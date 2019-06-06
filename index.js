@@ -33,7 +33,7 @@ if (!process.env.HTTP_ETH_PROVIDER) {
 
 if (process.env.MNEMONIC) {
   console.log("Loading Web3 with MNEMONIC");
-  web3 = new Web3(new HDWalletProvider(process.env.mnemonic, process.env.HTTP_ETH_PROVIDER));
+  web3 = new Web3(new HDWalletProvider(process.env.MNEMONIC, process.env.HTTP_ETH_PROVIDER));
 } else {
   web3 = new Web3(new Web3.providers.HttpProvider(process.env.HTTP_ETH_PROVIDER));
 }
@@ -193,7 +193,9 @@ app.get('/bounty', async (req, res) => {
 
   // const owner = await StandardBounties.methods.owner.call();
   // res.end(JSON.stringify( owner ));
-  const estimateGas = await StandardBounties.methods.issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount).estimateGas()
+  console.log('estimating gas...')
+  const estimateGas = await StandardBounties.methods.issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount).estimateGas({from: sender, value: depositAmount})
+  console.log('/bounty - estimateGas', estimateGas)
   StandardBounties.methods.issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount)
     .send({
       from: sender, 
@@ -272,7 +274,7 @@ app.post('/relay', async (req, res) => {
   const RELAYER_ADDRESS = accounts[process.env.RELAYER_ACC_INDEX || 0]
 
   // Just for testing purposes
-  const accountPK = "0xbee1a361b125d5ddb710427d2a39a8c57cda73100ae4223d6dbaa283ab167a40";
+  const accountPK = process.env.NO_ETH_USER_PK
   
 
   const relayedTxKey = `${req.body.sender}-${req.body.method}`;
@@ -306,7 +308,7 @@ app.post('/relay', async (req, res) => {
 
     if(signer == sender) {
       // // Actual relayed TX
-      const estimateGas = await BountiesMetaTxRelayer.methods.metaFulfillBounty(signature, bountyId, fulfillers, data, nonce).estimateGas()
+      const estimateGas = await BountiesMetaTxRelayer.methods.metaFulfillBounty(signature, bountyId, fulfillers, data, nonce).estimateGas({from: RELAYER_ADDRESS})
       console.log('ESTIMATED GAS', estimateGas)
       BountiesMetaTxRelayer.methods.metaFulfillBounty(signature, bountyId, fulfillers, data, nonce)
         .send({
@@ -319,9 +321,11 @@ app.post('/relay', async (req, res) => {
         })
         .on('transactionHash', async (txHash) => {
           console.log('metaFulfillBounty TxHash', txHash);
+          // UPDATE CACHE TO CONTROL RELAYED META TX QUOTA PER USER
           await cacheRelayedTx(relayedTxKey, req.body.method, sender, {
             signature, bountyId, fulfillers, data, nonce
           });
+          // UPDATE USER NONCE
           await updateNonce(req.body.sender, nonce + 1);
           res.end(JSON.stringify({status: 200, next_nonce: nonce + 1}))
         })

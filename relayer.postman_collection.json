@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "bed00ad1-fc37-4400-8056-9931be22475d",
+		"name": "relayer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "relay",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "method",
+							"value": "metaFulfillBounty",
+							"type": "text"
+						},
+						{
+							"key": "bountyId",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "sender",
+							"value": "0x453cb59e7280354ebD0ee6fc5709d449383f40c8",
+							"type": "text"
+						},
+						{
+							"key": "fulfillers",
+							"value": "[\"0x453cb59e7280354ebD0ee6fc5709d449383f40c8\"]",
+							"type": "text"
+						},
+						{
+							"key": "data",
+							"value": "Qmd5u7XVJuN3WiZ1o1R7GphVCcp6Njefx7veDTmW5C9vsp",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/relay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"relay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "resetNonce",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "account",
+							"value": "0x0ad7dc90a03bac20284df4b70dc4caf3c74cc3fa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/nonce/clear?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"nonce",
+						"clear"
+					],
+					"query": [
+						{
+							"key": "account",
+							"value": "0x0ad7dc90a03bac20284df4b70dc4caf3c74cc3fa",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBounty",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createDummyBounty",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/bounty",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bounty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAccountCache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/relay/list/0x453cb59e7280354ebD0ee6fc5709d449383f40c8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"relay",
+						"list",
+						"0x453cb59e7280354ebD0ee6fc5709d449383f40c8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
