@@ -58,3 +58,14 @@ In order to test the relayer functionality, follow this steps:
 5. Once the Tx is relayed. Try to execute the same method again. You'll get an error message saying "You have reached the limited quota for RelayedTx. Try again later.", as user can't make consecutive calls to this method after RELAY_TIMEOUT seconds.
 6. Get the account's current cache info: GET http://localhost:3000/relay/list/{account}. It will return a `data` field until it expires
 7. Get bounty data again for the same {bounty_id}. The console will show that it now has a value on the `fulfillments` property
+
+
+## Bounty requirements 
+
+- [x] It should have an API endpoint which our front-end can send POST requests 
+- [ ] Submit the signature and parameters of the function to the POST request. For instance, for the metaFulfillBounty function, the app would receive a request which includes the signature, bounty ID, array of fulfillers, data string, and nonce, along with the address which triggered it.
+- [x] It's only necessary to create the endpoint for the metaFulfillBounty function, the other functions may be added at a later time.
+- [x] The app should verify the integrity of the signature.
+- [x] The app should verify that the user hasn't sent more than one of these transactions in the last hour.
+- [x] The app should function using a wallet whose keys live within the project. It is sufficient to test this functionality using the Rinkeby network.
+- [x] The app should submit txns to the infura node endpoints, and does not need to run a node as well.
