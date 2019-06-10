@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(helmet());
 app.use(cors())
 
+/**
+ * Redis configuration
+ *
+ */
 const redis = (true) ? new Redis({
   host: process.env.REDIS_HOST || "127.0.0.1",
   port: process.env.REDIS_PORT || 6379
@@ -23,9 +27,12 @@ const redis = (true) ? new Redis({
 
 const jsonCache = new JSONCache(redis, {prefix: 'cache:'});
 
+/**
+ * Connecting to a Web3 endpoint and loading relayer accounts
+ *
+ */
 let transactions = {};
 let web3;
-
 console.log("Loading Web3 with Provider", process.env.HTTP_ETH_PROVIDER);
 if (!process.env.HTTP_ETH_PROVIDER) {
   process.exit(1)
@@ -39,11 +46,9 @@ if (process.env.MNEMONIC) {
 }
 
 let networkId;
-let relayedTxListKey;
 web3.eth.net.getId().then((id) => {
   networkId = id;
-  relayedTxListKey = `relayed_tx_net_${networkId}`;
-  console.log(`Setting Network config: networkId: ${networkId} Redis Relayed Tx List: ${relayedTxListKey}`);
+  console.log(`Setting Network config: networkId: ${networkId}`);
 });
 
 let accounts;
@@ -52,12 +57,10 @@ web3.eth.getAccounts().then( (_accounts) => {
   console.log("UNLOCKED ACCOUNTS? ", accounts);
 });
 
-console.log("LOADING CONTRACTS");
-const bountiesMetaTxRelayer = require('./contracts/BountiesMetaTxRelayer.abi.json');
-const standardBounties = require('./contracts/StandardBounties.abi.json');
-let BountiesMetaTxRelayer;
-let StandardBounties;
-
+/**
+ * Event listener (under development)
+ *
+ */ 
 function eventListener(contract) {
   contract.events.BountyIssued({fromBlock: 0}, (error, event) => {
     console.log('new BountyIssued event ==> ', event && event.returnValues)
@@ -65,6 +68,15 @@ function eventListener(contract) {
   })
 }
 
+/**
+ * Contract loader
+ *
+ */
+console.log("LOADING CONTRACTS");
+const bountiesMetaTxRelayer = require('./contracts/BountiesMetaTxRelayer.abi.json');
+const standardBounties = require('./contracts/StandardBounties.abi.json');
+let BountiesMetaTxRelayer;
+let StandardBounties;
 const contractsPromise = new Promise(async (resolve, reject) => {
   try {
     let BountiesMetaTxRelayer = await new web3.eth.Contract(bountiesMetaTxRelayer.abi, process.env.BOUNTIES_METATX_RELAYER_ADDRESS);
@@ -82,6 +94,12 @@ contractsPromise.then((contracts) => {
   StandardBounties = contracts[1];
 }).catch((err) => console.log('ERROR Loading contracts', err));
 
+///////////////////////
+
+/**
+ * Query data by associated key on Redis cache
+ *
+ */
 function queryCache(key) {
   return new Promise(async (resolve, reject) => {
     try {
@@ -93,6 +111,14 @@ function queryCache(key) {
   });
 }
 
+/**
+ * Cache data related to a user relayed transaction
+ * @key Record key composed by ${sender_address}-${method_name}
+ * @method Method name being called by relayed Tx
+ * @signer Account of owner who signed the Tx
+ * @params Parameters associated to the method executed by relayed Tx
+ *
+ */
 function cacheRelayedTx(key, method, signer, params) {
   return new Promise(async (resolve, reject) => {
     try {
@@ -110,28 +136,40 @@ function cacheRelayedTx(key, method, signer, params) {
   });
 }
 
-function getNonce(account) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const cache = await redis.get(`${account}-nonce`);
-      resolve(cache);
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
+/**
+ * Query user account latest nonce on  on Redis persistent storage (deprecated)
+ *
+ */
+// function getNonce(account) {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       const cache = await redis.get(`${account}-nonce`);
+//       resolve(cache);
+//     } catch (error) {
+//       reject(error);
+//     }
+//   });
+// }
 
-function updateNonce(account, nonce) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      await redis.set(`${account}-nonce`, nonce);
-      resolve();
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
+/**
+ * Updates user account latest nonce on Redis persistent storage (deprecated)
+ *
+ */
+// function updateNonce(account, nonce) {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       await redis.set(`${account}-nonce`, nonce);
+//       resolve();
+//     } catch (error) {
+//       reject(error);
+//     }
+//   });
+// }
 
+/**
+ * Return relayer config parameters
+ *
+ */
 app.get('/', (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json');
@@ -148,36 +186,61 @@ app.get('/', (req, res) => {
 
 });
 
+/**
+ * Gets latest relayed information about an account 
+ *
+ */
 app.get('/relay/list/:address', async(req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json');
   console.log('/sub/list', req.params);
 
-  const method = 'metaFulfillBounty';
+  const method = 'metaFulfillBounty'; // TODO:
   const key = `${req.params.address}-${method}`
 
   let result = {
     data: await queryCache(key),
-    nonce: await getNonce(req.params.address)
+    // nonce: await getNonce(req.params.address)
+    nonce: web3.utils.hexToNumber(await BountiesMetaTxRelayer.methods.replayNonce(req.params.address).call())
   }
   console.log(!result.data)
   res.end(JSON.stringify(result));
 });
 
-app.get('/relay/new/:address', async(req, res) => {
+/**
+ * Just for testing Redis cache expiry
+ *
+ */
+// app.get('/relay/new/:address', async(req, res) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.set('Content-Type', 'application/json');
+//   console.log('/sub/new', req.params);
+
+//   const method = 'metaFulfillBounty';
+//   const key = `${req.params.address}-${method}`;
+
+//   await cacheRelayedTx(key, method, req.params.address, {});
+//   await updateNonce(req.params.address, 0);
+//   res.end(JSON.stringify({'done': 'done'}))
+// });
+
+/**
+ * Get total created bounties
+ */
+app.get('/bounties', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json');
-  console.log('/sub/new', req.params);
 
-  const method = 'metaFulfillBounty';
-  const key = `${req.params.address}-${method}`;
+  let totalBounties = await StandardBounties.methods.numBounties.call()
+  res.end(JSON.stringify({totalBounties: web3.utils.hexToNumber(totalBounties)}));
 
-  await cacheRelayedTx(key, method, req.params.address, {});
-  await updateNonce(req.params.address, 0);
-  res.end(JSON.stringify({'done': 'done'}))
 });
 
-app.get('/bounty', async (req, res) => {
+/**
+ * Just for testing purposes. It creates a new dummy bounty
+ *
+ */
+app.post('/bounty', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json');
 
@@ -217,6 +280,10 @@ app.get('/bounty', async (req, res) => {
 
 });
 
+/**
+ * Just for testing purposes. Get bounty data by its id
+ *
+ */
 app.get('/get/bounty/:id', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   console.log("/get/bounty/", req.params.id);
@@ -227,45 +294,87 @@ app.get('/get/bounty/:id', async (req, res) => {
 
 })
 
-app.get('/relay/set', async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  console.log("/relay/set", req.body);
-  const currentRelayer = await StandardBounties.methods.metaTxRelayer.call()
-  console.log('CURRENT RELAYER', currentRelayer, typeof(currentRelayer))
-  console.log('Relayer contract address', BountiesMetaTxRelayer.address)
-  // res.end(JSON.stringify({done: 'done'}))
-  if (currentRelayer == "0x0000000000000000000000000000000000000000") {
+/**
+ * Just for testing purposes. Set the metaTxRelayer address on the StandardBounties contract
+ * It it currently done during smart contract deployment with truffle (deprecated)
+ */
+// app.get('/relay/set', async (req, res) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   console.log("/relay/set", req.body);
+//   const currentRelayer = await StandardBounties.methods.metaTxRelayer.call()
+//   console.log('CURRENT RELAYER', currentRelayer, typeof(currentRelayer))
+//   console.log('Relayer contract address', BountiesMetaTxRelayer.address)
+//   // res.end(JSON.stringify({done: 'done'}))
+//   if (currentRelayer == "0x0000000000000000000000000000000000000000") {
 
-    const estimateGas = await StandardBounties.methods.setMetaTxRelayer(BountiesMetaTxRelayer.address).estimateGas()
-    StandardBounties.methods.setMetaTxRelayer(BountiesMetaTxRelayer.address)
-      .send({
-        from: accounts[process.env.RELAYER_ACC_INDEX || 0],
-        gas: estimateGas, gasPrice: 20000000000
-      })
-      .on('error', (error, receipt) => {
-        console.log('setMetaTxRelayer ERROR', error, receipt);
-        res.end(JSON.stringify( error ));
-      })
-      .on('transactionHash', (txHash) => {
-        console.log('setMetaTxRelayer TxHash', txHash);
-        res.end(JSON.stringify({done: 'done'}))
-      })
-      .on('receipt', (receipt) => console.log('setMetaTxRelayer Receipt', receipt))
-  } else {
-    res.end(JSON.stringify({done: 'Relayer already set'}))
-  }
-})
+//     const estimateGas = await StandardBounties.methods.setMetaTxRelayer(BountiesMetaTxRelayer.address).estimateGas()
+//     StandardBounties.methods.setMetaTxRelayer(BountiesMetaTxRelayer.address)
+//       .send({
+//         from: accounts[process.env.RELAYER_ACC_INDEX || 0],
+//         gas: estimateGas, gasPrice: 20000000000
+//       })
+//       .on('error', (error, receipt) => {
+//         console.log('setMetaTxRelayer ERROR', error, receipt);
+//         res.end(JSON.stringify( error ));
+//       })
+//       .on('transactionHash', (txHash) => {
+//         console.log('setMetaTxRelayer TxHash', txHash);
+//         res.end(JSON.stringify({done: 'done'}))
+//       })
+//       .on('receipt', (receipt) => console.log('setMetaTxRelayer Receipt', receipt))
+//   } else {
+//     res.end(JSON.stringify({done: 'Relayer already set'}))
+//   }
+// })
 
-app.post('/nonce/clear', async (req, res) => {
-// app.get('/relay/:nonce', async (req, res) => {
+/**
+ * Get the next available nonce on the relayer for an account
+ */
+app.get('/relay/nonce/:account', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json');
-  console.log("/relay/clear", req.body);
+  console.log("/relay/nonce/", req.params);
 
-  await redis.set(`${req.body.account}-nonce`, 0)
-  res.end(JSON.stringify({message: 'Nonce cache reset successfully!'}))
+  let latestNonce;
+  if(req.params.account) {
+    latestNonce = await BountiesMetaTxRelayer.methods.replayNonce(req.params.account).call();
+  }
+  res.end(JSON.stringify({latestNonce: latestNonce ? web3.utils.hexToNumber(latestNonce):null}));
 });
 
+/**
+ * Just for testing purposes. Clear nonce data on Redis for a specific acccount (deprecated)
+ * 
+ */
+// app.post('/nonce/clear', async (req, res) => {
+// // app.get('/relay/:nonce', async (req, res) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.set('Content-Type', 'application/json');
+//   console.log("/relay/clear", req.body);
+
+//   await redis.set(`${req.body.account}-nonce`, 0)
+//   res.end(JSON.stringify({message: 'Nonce cache reset successfully!'}))
+// });
+
+/**
+ * Main method to relay a transaction. The parameters needed to be sent in the request body are:
+ * {
+ * sender
+ * method
+ * bountyId
+ * fulfillers
+ * data
+ * }
+ *
+ * Logic: Tx is relayed if no associated data is found on cache (a user either never used the relayer or data
+ * has expired due to time window configuration).
+ *
+ * Function verifies that the sender actually signed the Tx
+ * 
+ * For testing purposes, tx is signed within this method by an account
+ * with NO_ETH_USER_PK as private key.
+ * 
+ */
 app.post('/relay', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.set('Content-Type', 'application/json');
@@ -275,11 +384,12 @@ app.post('/relay', async (req, res) => {
 
   // Just for testing purposes
   const accountPK = process.env.NO_ETH_USER_PK
-  
 
   const relayedTxKey = `${req.body.sender}-${req.body.method}`;
   const cache = await queryCache(relayedTxKey);
-  const nonce = parseInt(await getNonce(req.body.sender)) || 0;
+  // const nonce = parseInt(await getNonce(req.body.sender)) || 0;
+  const latestNonce = await BountiesMetaTxRelayer.methods.replayNonce(req.body.sender).call();
+  const nonce = await web3.utils.hexToNumber(latestNonce);
   const sender = web3.utils.toChecksumAddress(req.body.sender);
   const bountyId = req.body.bountyId;
   const fulfillers = JSON.parse(req.body.fulfillers);
@@ -338,5 +448,6 @@ app.post('/relay', async (req, res) => {
   }
 });
 
+// Deploying the relayer
 app.listen(process.env.PORT || 3000);
 console.log(`Relayer is running on port ${process.env.PORT || 3000}`);

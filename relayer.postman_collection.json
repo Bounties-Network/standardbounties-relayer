@@ -27,7 +27,7 @@
 						},
 						{
 							"key": "bountyId",
-							"value": "0",
+							"value": "1",
 							"type": "text"
 						},
 						{
@@ -111,7 +111,17 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "http://localhost:3000/get/bounty/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get",
+						"bounty",
+						"1"
+					]
 				}
 			},
 			"response": []
@@ -119,7 +129,7 @@
 		{
 			"name": "createDummyBounty",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"url": {
 					"raw": "http://localhost:3000/bounty",
@@ -150,6 +160,46 @@
 					"path": [
 						"relay",
 						"list",
+						"0x453cb59e7280354ebD0ee6fc5709d449383f40c8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "totalBounties",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/bounties",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bounties"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAccountRelayLatestNonce",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/relay/nonce/0x453cb59e7280354ebD0ee6fc5709d449383f40c8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"relay",
+						"nonce",
 						"0x453cb59e7280354ebD0ee6fc5709d449383f40c8"
 					]
 				}
