@@ -1,20 +1,20 @@
 
-Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-r422b[0m
-{"level":"warn","ts":1569336431.907371,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336431.9076915,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-76hzh[0m
+{"level":"warn","ts":1569338589.5180683,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569338589.5184228,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-mj5ds[0m
-{"level":"warn","ts":1569336433.7621083,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1569336433.7631462,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-xgbgp[0m
+{"level":"warn","ts":1569338590.5990644,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1569338590.6001863,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
 
 Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-bounties-network-standardb-62bmd[0m
-{"level":"warn","ts":1569336452.1218092,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336452.6253593,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ dc64fc15867e6d0e0611130e6d0395fc5bdda64b in path /workspace/source"}
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-bounties-network-standardb-mvbk9[0m
+{"level":"warn","ts":1569338596.6955743,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569338597.2419214,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ 27bb02d449aa3bde46c7cc5dbe472ea49c92d064 in path /workspace/source"}
 
 Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:dc64fc15867e6d0e0611130e6d0395fc5bdda64b
+Using SHAs from PULL_REFS=master:27bb02d449aa3bde46c7cc5dbe472ea49c92d064
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
 Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
@@ -29,10 +29,10 @@ Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mmet
 running command: echo \$(**-release-version) > VERSION
 
 running command: ** step tag --version \$(cat VERSION)
-Updating chart version in charts/standardbounties-relayer/Chart.yaml to 0.0.1
+Updating chart version in charts/standardbounties-relayer/Chart.yaml to 0.0.3
 Updating repository in charts/standardbounties-relayer/values.yaml to 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer
-Updating tag in charts/standardbounties-relayer/values.yaml to 0.0.1
-Tag v0.0.1 created and pushed to remote origin
+Updating tag in charts/standardbounties-relayer/values.yaml to 0.0.3
+Tag v0.0.3 created and pushed to remote origin
 
 WARNING: failed to find secret kaniko-secret in namespace **: secrets "kaniko-secret" not found
 PipelineActivity for Bounties-Network-standardbounties-relayer-master-1
@@ -43,22 +43,22 @@ upserted Pipeline bounties-network-standardbounti-1
 created PipelineRun bounties-network-standardbounti-1
 created PipelineStructure bounties-network-standardbounti-1
 
-Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-wkn4c[0m
-{"level":"warn","ts":1569336460.638011,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336460.6427011,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-95bpf[0m
+{"level":"warn","ts":1569338605.6123738,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569338605.612893,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-lf2cj[0m
-{"level":"warn","ts":1569336461.0335472,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1569336461.0371149,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/standardbounties-relayer\""}
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-d485q[0m
+{"level":"warn","ts":1569338606.6126885,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1569338606.614854,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/standardbounties-relayer\""}
 
 Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-bounties-network-standardbounti-f5b99[0m
-{"level":"warn","ts":1569336490.0764065,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336490.5230594,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ v0.0.1 in path /workspace/source"}
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-bounties-network-standardbounti-p9q7r[0m
+{"level":"warn","ts":1569338612.6873453,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569338613.2015502,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ v0.0.3 in path /workspace/source"}
 
 Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:dc64fc15867e6d0e0611130e6d0395fc5bdda64b
+Using SHAs from PULL_REFS=master:27bb02d449aa3bde46c7cc5dbe472ea49c92d064
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
 Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
@@ -350,7 +350,7 @@ make: Entering directory `/workspace/source/node_modules/websocket/build'
 make: Leaving directory `/workspace/source/node_modules/websocket/build'
 npm WARN standardbounties-relayer@1.0.0 No repository field.
 
-added 440 packages from 249 contributors and audited 139948 packages in 25.81s
+added 440 packages from 249 contributors and audited 139948 packages in 29.531s
 found 1 low severity vulnerability
   run `npm audit fix` to fix them, or `npm audit` for details
 
@@ -387,6 +387,47 @@ Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfro
 [36mINFO[0m[0003] Taking snapshot of files...                  
 [36mINFO[0m[0005] CMD ["npm", "start"]                         
 [36mINFO[0m[0005] No files changed in this command, skipping snapshotting. 
-error pushing image: failed to push to destination 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer:0.0.1: DENIED: User: arn:aws:sts::802922962628:assumed-role/openfora-worker-nodes-NodeInstanceRole-ZSQDE623R2SB/i-0199048453970f340 is not authorized to perform: ecr:InitiateLayerUpload on resource: arn:aws:ecr:us-east-1:802922962628:repository/bounties-network/standardbounties-relayer
-[31m
-Pipeline failed on stage 'from-build-pack' : container 'step-build-container-build'. The execution of the pipeline has stopped.[0m
+2019/09/24 15:24:13 existing blob: sha256:a88538b9cd05cfa611e43a25582a95ad7879f6fa708b0386a26b71ee62235bb3
+2019/09/24 15:24:13 existing blob: sha256:e01bd28a434b56ffd2a3fe9aa99b9b69aecca69904843edd30b1ee7150d79904
+2019/09/24 15:24:13 existing blob: sha256:5bba3ecb4cd6374a19da45f2a3db0a9c0804984358b3bb4b666c28944016e5ff
+2019/09/24 15:24:13 existing blob: sha256:196b8e3c919d5639193ba6c6e54774528942041bbc37606631a2250502985c3c
+2019/09/24 15:24:13 existing blob: sha256:7d083412657baa2dafba8d093034ef26f9ed2c90fb6ed95f76bb55aff03ed429
+2019/09/24 15:24:13 pushed blob: sha256:f94f06ef7d5ca5c161b422e5a4451ea7ab4f6e474c46eaa7076a01ec3a4cdace
+2019/09/24 15:24:13 pushed blob: sha256:f938f5037ede65d25b6e72762bfbdb16f854ed6bb89240f070433a974439564c
+2019/09/24 15:24:17 pushed blob: sha256:cbee293c3a1292632e9c6d66dc3470ff6ca47d923232c0ec1bc249e35742125d
+2019/09/24 15:24:17 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer:0.0.3: digest: sha256:bf55188f7274d326cc67fda3a5ae4267293b0be63c27569851320c4dfee2ffed size: 1407
+
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
+Converted /workspace/source/charts/standardbounties-relayer to an unshallow repository
+Generating change log from git ref c9a3017c0207df3a8c22c46f9e0fe8e5ebaba49c => 21e93d278da651e81cbf87a50aa2188f408d913f
+Associating user x-0 in users.jenkins.io with email ericjohn.juta@consensys.net to git GitProvider user with login -0 as emails match
+Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
+WARNING: Failed to enrich commit 27bb02d449aa3bde46c7cc5dbe472ea49c92d064 with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Finding issues in commit messages using git format
+WARNING: No release found for Bounties-Network/standardbounties-relayer and tag v0.0.3 so creating a new release
+Updated the release information at https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.3
+generated: /workspace/source/charts/standardbounties-relayer/templates/release.yaml
+Created Release standardbounties-relayer-0-0-3 resource in namespace **
+Updating PipelineActivity bounties-network-standardbounties-relayer-master-1 with version 0.0.3
+Updated PipelineActivities bounties-network-standardbounties-relayer-master-1 with release notes URL: https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.3
+
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file standardbounties-relayer-0.0.3.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+
+Showing logs for build [32mbounties-network-standardbounti-1[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
+WARNING: prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+Promoting app standardbounties-relayer version 0.0.3 to namespace **-staging
+Created Pull Request: https://github.com/ConsenSys/environment-openfora-staging/pull/1
+Pull Request https://github.com/ConsenSys/environment-openfora-staging/pull/1 is merged at sha c0f5211520de002bb1f1c4d624b617276adb9e11
+Pull Request merged but we are not waiting for the update pipeline to complete!
+WARNING: Could not find the service URL in namespace **-staging for names standardbounties-relayer, **-standardbounties-relayer, **-staging-standardbounties-relayer
