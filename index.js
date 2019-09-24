@@ -529,6 +529,23 @@ app.post('/relay', async (req, res) => {
     process.exit(1);
   });
 
+  /**
+   * Connecting to a Web3 endpoint and loading relayer accounts
+   *
+   */
+  console.log('Loading Web3 with Provider', process.env.INFURA_HTTP_PROVIDER);
+  if (!process.env.INFURA_HTTP_PROVIDER) {
+    console.error('INFURA_HTTP_PROVIDER not found');
+    process.exit(1);
+  }
+
+  if (process.env.MNEMONIC) {
+    console.log('Loading Web3 with MNEMONIC');
+    web3 = new Web3(new HDWalletProvider(process.env.MNEMONIC, process.env.INFURA_HTTP_PROVIDER));
+  } else {
+    web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_HTTP_PROVIDER));
+  }
+
   const contractsPromise = new Promise(async (resolve, reject) => {
     try {
       let BountiesMetaTxRelayer = await new web3.eth.Contract(
@@ -553,23 +570,6 @@ app.post('/relay', async (req, res) => {
       console.error('ERROR Loading contracts', err);
       process.exit(1);
     });
-
-  /**
-   * Connecting to a Web3 endpoint and loading relayer accounts
-   *
-   */
-  console.log('Loading Web3 with Provider', process.env.INFURA_HTTP_PROVIDER);
-  if (!process.env.INFURA_HTTP_PROVIDER) {
-    console.error('INFURA_HTTP_PROVIDER not found');
-    process.exit(1);
-  }
-
-  if (process.env.MNEMONIC) {
-    console.log('Loading Web3 with MNEMONIC');
-    web3 = new Web3(new HDWalletProvider(process.env.MNEMONIC, process.env.INFURA_HTTP_PROVIDER));
-  } else {
-    web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_HTTP_PROVIDER));
-  }
 
   web3.eth.net.getId().then(id => {
     networkId = id;
