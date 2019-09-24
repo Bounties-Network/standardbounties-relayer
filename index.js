@@ -589,17 +589,24 @@ app.post('/relay', async (req, res) => {
     return new BN(balance).gt(new BN(minBalance));
   }
 
-  web3.eth.getAccounts().then(async _accounts => {
-    accounts = _accounts;
-    console.log('UNLOCKED ACCOUNTS? ', accounts);
-    const balanceResultGT = await hasEnoughBalance(accounts[process.env.RELAYER_ACC_INDEX], '0');
-    console.log('balanceResultGT', balanceResultGT);
-    app.listen(process.env.PORT || 3000);
+  web3.eth
+    .getAccounts()
+    .then(async _accounts => {
+      accounts = _accounts;
+      console.log('UNLOCKED ACCOUNTS? ', accounts);
+      const balanceResultGT = await hasEnoughBalance(accounts[process.env.RELAYER_ACC_INDEX], '0');
+      console.log('balanceResultGT', balanceResultGT);
+      app.listen(process.env.PORT || 3000);
+      console.log(`Relayer is running on port ${process.env.PORT || 3000}`);
 
-    if (!balanceResultGT) {
-      console.error('Relay account does not have enough funds');
+      if (!balanceResultGT) {
+        console.error('Relay account does not have enough funds');
+        process.exit(1);
+      }
+    })
+    .catch(err => {
+      console.error('ERROR LOADING ACCOUNTS');
+      console.error(err);
       process.exit(1);
-    }
-  });
+    });
 })();
-console.log(`Relayer is running on port ${process.env.PORT || 3000}`);
