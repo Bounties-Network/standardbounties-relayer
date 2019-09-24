@@ -12,7 +12,7 @@ env:
   REDIS_HOST: 'stagedrinkeby-001.avqgak.0001.use1.cache.amazonaws.com'
   REDIS_PORT: 6379
   INFURA_HTTP_PROVIDER: 'https://rinkeby.infura.io/v3/cmlua2VieQ=='
-  MNEMONIC: 'vacuum curious hill expose hybrid tunnel vessel rotate nerve march mammal agent'
+  MNEMONIC: 'knee violin certain rebuild rival couch wonder bind bridge delay tourist poet'
   RELAYER_ACC_INDEX: 0
   RELAY_TIMEOUT: 60*60*60
   BOUNTIES_METATX_RELAYER_ADDRESS: '0x471AC6ef531eE289667382a76cA1bF64dc9d6389'
