@@ -11,7 +11,7 @@ image:
 env:
   REDIS_HOST: 'stagedrinkeby-001.avqgak.0001.use1.cache.amazonaws.com'
   REDIS_PORT: 6379
-  INFURA_HTTP_PROVIDER: 'https://rinkeby.infura.io/v3/5eb45628ce2c4ecebcce7f201f352792=='
+  INFURA_HTTP_PROVIDER: 'https://rinkeby.infura.io/v3/5eb45628ce2c4ecebcce7f201f352792'
   MNEMONIC: 'knee violin certain rebuild rival couch wonder bind bridge delay tourist poet'
   RELAYER_ACC_INDEX: 0
   RELAY_TIMEOUT: 60*60*60
