@@ -596,13 +596,13 @@ app.post('/relay', async (req, res) => {
       console.log('UNLOCKED ACCOUNTS? ', accounts);
       const balanceResultGT = await hasEnoughBalance(accounts[process.env.RELAYER_ACC_INDEX], '0');
       console.log('balanceResultGT', balanceResultGT);
-      app.listen(process.env.PORT || 3000);
-      console.log(`Relayer is running on port ${process.env.PORT || 3000}`);
 
       if (!balanceResultGT) {
         console.error('Relay account does not have enough funds');
-        process.exit(1);
+        // process.exit(1);
       }
+      app.listen(process.env.PORT || 3000);
+      console.log(`Relayer is running on port ${process.env.PORT || 3000}`);
     })
     .catch(err => {
       console.error('ERROR LOADING ACCOUNTS');
