@@ -9,6 +9,15 @@ image:
 
 # define environment variables here as a map of key: value
 env:
+  REDIS_HOST: 'stagedrinkeby-001.avqgak.0001.use1.cache.amazonaws.com'
+  REDIS_PORT: 6379
+  INFURA_HTTP_PROVIDER: 'https://rinkeby.infura.io/cmlua2VieQ=='
+  MNEMONIC: 'vacuum curious hill expose hybrid tunnel vessel rotate nerve march mammal 	agent'
+  RELAYER_ACC_INDEX: 0
+  RELAY_TIMEOUT: 60*60*60
+  BOUNTIES_METATX_RELAYER_ADDRESS: '0x471AC6ef531eE289667382a76cA1bF64dc9d6389'
+  STANDARD_BOUNTIES_ADDRESS: '0xDA9B5E037bC6395A4ec350f9C6EDB698ea124871A9B5E037bC6395A4ec350f9C6EDB698ea124871'
+  NO_ETH_USER_PK: '1f3c30d405a6d1f9694007f3a56c7cf4d3852dbfeaa297bc777d6d86636b203d'
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
@@ -19,8 +28,8 @@ service:
   externalPort: 80
   internalPort: 8080
   annotations:
-    fabric8.io/expose: "true"
-    fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
+    fabric8.io/expose: 'true'
+    fabric8.io/ingress.annotations: 'kubernetes.io/ingress.class: nginx'
 resources:
   limits:
     cpu: 400m
