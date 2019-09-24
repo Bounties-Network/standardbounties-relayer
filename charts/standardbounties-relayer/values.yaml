@@ -11,7 +11,7 @@ image:
 env:
   REDIS_HOST: 'stagedrinkeby-001.avqgak.0001.use1.cache.amazonaws.com'
   REDIS_PORT: 6379
-  INFURA_HTTP_PROVIDER: 'https://rinkeby.infura.io/cmlua2VieQ=='
+  INFURA_HTTP_PROVIDER: 'https://rinkeby.infura.io/v3/cmlua2VieQ=='
   MNEMONIC: 'vacuum curious hill expose hybrid tunnel vessel rotate nerve march mammal agent'
   RELAYER_ACC_INDEX: 0
   RELAY_TIMEOUT: 60*60*60
