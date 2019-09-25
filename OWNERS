@@ -1,6 +1,6 @@
-aliases:
-- rej156
-best-approvers:
-- rej156
-best-reviewers:
-- rej156
+approvers: 
+  - rej156
+  - mbeylin
+reviewers: 
+  - rej156
+  - mbeylin
