@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import getWeb3, { web3Networks } from './utils/getWeb3';
-import Header from './components/Header/index.js';
-import Web3Info from './components/Web3Info/index.js';
-import BountiesUI from './components/Bounties/index.js';
-import Instructions from './components/Instructions/index.js';
-import { Loader, ToastMessage } from 'rimble-ui';
+import React, { Component } from "react";
+import getWeb3, { web3Networks } from "./utils/getWeb3";
+import Header from "./components/Header/index.js";
+import Web3Info from "./components/Web3Info/index.js";
+import BountiesUI from "./components/Bounties/index.js";
+import Instructions from "./components/Instructions/index.js";
+import { Loader, ToastMessage } from "rimble-ui";
 
-import { solidityLoaderOptions } from '../config/webpack';
+import { solidityLoaderOptions } from "../config/webpack";
 
-import styles from './App.module.scss';
+import styles from "./App.module.scss";
 
 class App extends Component {
   state = {
@@ -16,8 +16,8 @@ class App extends Component {
     web3: null,
     accounts: null,
     contract: null,
-    route: window.location.pathname.replace('/', ''),
-    processing: false,
+    route: window.location.pathname.replace("/", ""),
+    processing: false
   };
 
   // getGanacheAddresses = async () => {
@@ -35,8 +35,8 @@ class App extends Component {
     let StandardBounties = {};
     let BountiesMetaTxRelayer = {};
     try {
-      StandardBounties = require('../../contracts/StandardBounties.abi.json');
-      BountiesMetaTxRelayer = require('../../contracts/BountiesMetaTxRelayer.abi.json');
+      StandardBounties = require("../../contracts/StandardBounties.abi.json");
+      BountiesMetaTxRelayer = require("../../contracts/BountiesMetaTxRelayer.abi.json");
     } catch (e) {
       console.log(e);
     }
@@ -56,8 +56,11 @@ class App extends Component {
       const networkId = await web3.eth.net.getId();
       const networkType = await web3.eth.net.getNetworkType();
       const isMetaMask = web3.currentProvider.isMetaMask;
-      let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]) : web3.utils.toWei('0');
-      balance = web3.utils.fromWei(balance, 'ether');
+      let balance =
+        accounts.length > 0
+          ? await web3.eth.getBalance(accounts[0])
+          : web3.utils.toWei("0");
+      balance = web3.utils.fromWei(balance, "ether");
 
       let stdBountiesInstance = null;
       let metaTxRelayerInstance = null;
@@ -66,21 +69,34 @@ class App extends Component {
       let networkData = web3Networks[networkId.toString()];
       if (StandardBounties.networks) {
         if (networkData && networkData.standardBounties) {
-          stdBountiesInstance = new web3.eth.Contract(StandardBounties.abi, networkData.standardBounties);
+          stdBountiesInstance = new web3.eth.Contract(
+            StandardBounties.abi,
+            networkData.standardBounties
+          );
         } else {
           deployedNetwork = StandardBounties.networks[networkId.toString()];
           if (deployedNetwork) {
-            stdBountiesInstance = new web3.eth.Contract(StandardBounties.abi, deployedNetwork.address);
+            stdBountiesInstance = new web3.eth.Contract(
+              StandardBounties.abi,
+              deployedNetwork.address
+            );
           }
         }
       }
       if (BountiesMetaTxRelayer.networks) {
         if (networkData && networkData.bountiesMetaTxRelayer) {
-          metaTxRelayerInstance = new web3.eth.Contract(BountiesMetaTxRelayer.abi, networkData.bountiesMetaTxRelayer);
+          metaTxRelayerInstance = new web3.eth.Contract(
+            BountiesMetaTxRelayer.abi,
+            networkData.bountiesMetaTxRelayer
+          );
         } else {
-          deployedNetwork = BountiesMetaTxRelayer.networks[networkId.toString()];
+          deployedNetwork =
+            BountiesMetaTxRelayer.networks[networkId.toString()];
           if (deployedNetwork) {
-            metaTxRelayerInstance = new web3.eth.Contract(BountiesMetaTxRelayer.abi, deployedNetwork.address);
+            metaTxRelayerInstance = new web3.eth.Contract(
+              BountiesMetaTxRelayer.abi,
+              deployedNetwork.address
+            );
           }
         }
       }
@@ -99,14 +115,14 @@ class App extends Component {
             hotLoaderDisabled,
             isMetaMask,
             stdBountiesInstance,
-            metaTxRelayerInstance,
+            metaTxRelayerInstance
           },
           () => {
             this.refreshValues(stdBountiesInstance, metaTxRelayerInstance);
             setInterval(() => {
               this.refreshValues(stdBountiesInstance, metaTxRelayerInstance);
             }, 5000);
-          },
+          }
         );
       } else {
         this.setState({
@@ -117,12 +133,14 @@ class App extends Component {
           networkId,
           networkType,
           hotLoaderDisabled,
-          isMetaMask,
+          isMetaMask
         });
       }
     } catch (error) {
       // Catch any errors for any of the above operations.
-      alert(`Failed to load web3, accounts, or contract. Check console for details.`);
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`
+      );
       console.error(error);
     }
   };
@@ -143,35 +161,53 @@ class App extends Component {
     let sender = accounts[0];
     const issuers = [sender];
     const approvers = [sender];
-    const data = 'Qmd5u7XVJuN3WiZ1o1R7GphVCcp6Njefx7veDTmW5C9vsp';
-    const deadline = Date.now() + 60 * 60 * 24 * 5;
-    const token = '0x0000000000000000000000000000000000000000';
+    const data = "QmTUXNiVKDRNCkVWaaJfcPhYapvWNM6HoUeit4HucCGqMU";
+    const deadline = "1577750400";
+    const token = "0x0000000000000000000000000000000000000000";
     const tokenVersion = 0;
-    const depositAmount = web3.utils.toWei('0.001', 'ether');
+    const depositAmount = web3.utils.toWei("0.001", "ether");
 
-    console.log('estimating gas...');
+    console.log("estimating gas...");
     const estimateGas = await stdBountiesInstance.methods
-      .issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount)
+      .issueAndContribute(
+        sender,
+        issuers,
+        approvers,
+        data,
+        deadline,
+        token,
+        tokenVersion,
+        depositAmount
+      )
       .estimateGas({ from: sender, value: depositAmount });
 
-    console.log('dummyBounty - estimateGas', estimateGas);
+    console.log("dummyBounty - estimateGas", estimateGas);
 
     await stdBountiesInstance.methods
-      .issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount)
+      .issueAndContribute(
+        sender,
+        issuers,
+        approvers,
+        data,
+        deadline,
+        token,
+        tokenVersion,
+        depositAmount
+      )
       .send({
         from: sender,
         gas: estimateGas,
-        value: depositAmount,
+        value: depositAmount
       })
-      .on('error', (error, receipt) => {
-        console.log('IssueBounty ERROR', error, receipt);
+      .on("error", (error, receipt) => {
+        console.log("IssueBounty ERROR", error, receipt);
         this.setState({ processing: false });
       })
-      .on('transactionHash', txHash => {
-        console.log('IssueBounty TxHash', txHash);
+      .on("transactionHash", txHash => {
+        console.log("IssueBounty TxHash", txHash);
       })
-      .on('receipt', receipt => {
-        console.log('IssueBounty Receipt', receipt);
+      .on("receipt", receipt => {
+        console.log("IssueBounty Receipt", receipt);
         postEvent(receipt);
         this.setState({ processing: false });
       });
@@ -191,7 +227,8 @@ class App extends Component {
     return (
       <div className={styles.setup}>
         <div className={styles.notice}>
-          Your <b> contracts are not deployed</b> in this network. Two potential reasons: <br />
+          Your <b> contracts are not deployed</b> in this network. Two potential
+          reasons: <br />
           <p>
             Maybe you are in the wrong network? Point Metamask to localhost.
             <br />
@@ -212,7 +249,9 @@ class App extends Component {
     return (
       <div className={styles.wrapper}>
         {!this.state.web3 && this.renderLoader()}
-        {this.state.web3 && !this.state.stdBountiesInstance && this.renderDeployCheck('StandardBounties')}
+        {this.state.web3 &&
+          !this.state.stdBountiesInstance &&
+          this.renderDeployCheck("StandardBounties")}
         {this.state.web3 && this.state.stdBountiesInstance && (
           <div className={styles.contracts}>
             <h1>StandardBounties Contract is good to Go!</h1>
@@ -220,7 +259,10 @@ class App extends Component {
             <p> You can see your account info on the left </p>
             <div className={styles.widgets}>
               <Web3Info {...this.state} />
-              <BountiesUI createDummyBounty={this.createDummyBounty} {...this.state} />
+              <BountiesUI
+                createDummyBounty={this.createDummyBounty}
+                {...this.state}
+              />
             </div>
           </div>
         )}
@@ -234,12 +276,12 @@ class App extends Component {
       <div className={styles.App}>
         {processing && (
           <ToastMessage.Processing
-            style={{ position: 'fixed', zIndex: '100' }}
-            message={'Blockchain Transaction in progress...'}
+            style={{ position: "fixed", zIndex: "100" }}
+            message={"Blockchain Transaction in progress..."}
           />
         )}
         <Header />
-        {this.state.route === '' && this.renderBody()}
+        {this.state.route === "" && this.renderBody()}
       </div>
     );
   }
