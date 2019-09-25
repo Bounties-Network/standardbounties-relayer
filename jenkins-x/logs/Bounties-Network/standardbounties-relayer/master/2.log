@@ -1,77 +1,112 @@
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-fhz4p[0m
-{"level":"warn","ts":1569336848.6982715,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336848.6986737,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-ph2tt[0m
+{"level":"warn","ts":1569429287.8912673,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569429287.8920171,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-x9qbz[0m
-{"level":"warn","ts":1569336849.716917,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1569336849.7179792,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-6ljx7[0m
+{"level":"warn","ts":1569429288.68548,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1569429288.6900465,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-bounties-network-standardb-hs4jw[0m
-{"level":"warn","ts":1569336853.7764997,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336854.5159314,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ d15580a991c62d895640ad85463f2e604f03f71f in path /workspace/source"}
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-bounties-network-standardb-bn9mm[0m
+{"level":"warn","ts":1569429294.7563906,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569429295.147025,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ 9c37b065a593f440bcc2cf6fcae8fb9f62c5d566 in path /workspace/source"}
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:d15580a991c62d895640ad85463f2e604f03f71f
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:9c37b065a593f440bcc2cf6fcae8fb9f62c5d566
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
 SKIP merge-pull-refs: Nothing to merge
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-create-effective-pipeline[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-create-effective-pipeline[0m
 Deleting and cloning the Jenkins X versions repo
 Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.**/jenkins-x-versions
-Effective pipeline written to jenkins-x-effective.yml
+Effective pipeline written to jenkins-x-release-effective.yml
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mmeta-pipeline[0m and container [32mstep-create-tekton-crds[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mmeta-pipeline[0m and container [32mstep-create-tekton-crds[0m
 running command: echo \$(**-release-version) > VERSION
 
 running command: ** step tag --version \$(cat VERSION)
-Updating chart version in charts/standardbounties-relayer/Chart.yaml to 0.0.2
+Updating chart version in charts/standardbounties-relayer/Chart.yaml to 0.0.9
 Updating repository in charts/standardbounties-relayer/values.yaml to 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer
-Updating tag in charts/standardbounties-relayer/values.yaml to 0.0.2
-Tag v0.0.2 created and pushed to remote origin
+Updating tag in charts/standardbounties-relayer/values.yaml to 0.0.9
+Tag v0.0.9 created and pushed to remote origin
 
 WARNING: failed to find secret kaniko-secret in namespace **: secrets "kaniko-secret" not found
 PipelineActivity for Bounties-Network-standardbounties-relayer-master-2
 Applying changes 
 upserted PipelineResource bounties-network-standardbounti for the git repository https://github.com/Bounties-Network/standardbounties-relayer.git
-upserted Task bounties-network-standardbounti-xz2vs-from-build-pack-2
-upserted Pipeline bounties-network-standardbounti-xz2vs-2
-created PipelineRun bounties-network-standardbounti-xz2vs-2
-created PipelineStructure bounties-network-standardbounti-xz2vs-2
+upserted Task bounties-network-standardbounti-pnmj8-from-build-pack-2
+upserted Pipeline bounties-network-standardbounti-pnmj8-2
+created PipelineRun bounties-network-standardbounti-pnmj8-2
+created PipelineStructure bounties-network-standardbounti-pnmj8-2
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-j55kc[0m
-{"level":"warn","ts":1569336865.7163568,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336865.7167127,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-b6lxn[0m
+{"level":"warn","ts":1569429303.9166534,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569429303.9172976,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-6h5tf[0m
-{"level":"warn","ts":1569336868.0416946,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1569336868.0463157,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/standardbounties-relayer\""}
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-sxzfm[0m
+{"level":"warn","ts":1569429304.921239,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1569429304.926239,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/standardbounties-relayer\""}
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-bounties-network-standardbounti-2klwk[0m
-{"level":"warn","ts":1569336897.1632516,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1569336897.5926085,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ v0.0.2 in path /workspace/source"}
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-bounties-network-standardbounti-vq8s5[0m
+{"level":"warn","ts":1569429312.041646,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569429312.9492114,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ v0.0.9 in path /workspace/source"}
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:d15580a991c62d895640ad85463f2e604f03f71f
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:9c37b065a593f440bcc2cf6fcae8fb9f62c5d566
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
 Generated Git credentials file /workspace/xdg_config/git/credentials
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npmrc[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npmrc[0m
 WARNING: failed to find Secret npm-token in namespace **
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npm-install[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npm-install[0m
+npm WARN deprecated truffle-hdwallet-provider@1.0.17: WARNING: This package has been renamed to @truffle/hdwallet-provider.
 
 > scrypt@6.0.3 preinstall /workspace/source/node_modules/scrypt
 > node node-scrypt-preinstall.js
 
+
+> keccak@1.4.0 install /workspace/source/node_modules/keccak
+> npm run rebuild || echo "Keccak bindings compilation fail. Pure JS implementation will be used."
+
+
+> keccak@1.4.0 rebuild /workspace/source/node_modules/keccak
+> node-gyp rebuild
+
+make: Entering directory `/workspace/source/node_modules/keccak/build'
+  CXX(target) Release/obj.target/keccak/src/addon.o
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::Initialize(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:37:47: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     unsigned int rate = info[0]->IntegerValue();
+                                               ^
+../src/addon.cc:38:51: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     unsigned int capacity = info[1]->IntegerValue();
+                                                   ^
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::AbsorbLastFewBits(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:56:48: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     unsigned char bits = info[0]->IntegerValue();
+                                                ^
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::Squeeze(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:64:43: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     size_t length = info[0]->IntegerValue();
+                                           ^
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::Copy(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:75:82: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+     KeccakWrapper* to = Nan::ObjectWrap::Unwrap<KeccakWrapper>(info[0]->ToObject());
+                                                                                  ^
+  CC(target) Release/obj.target/keccak/src/libkeccak/KeccakSponge.o
+  CC(target) Release/obj.target/keccak/src/libkeccak/KeccakP-1600-reference.o
+  SOLINK_MODULE(target) Release/obj.target/keccak.node
+  COPY Release/keccak.node
+make: Leaving directory `/workspace/source/node_modules/keccak/build'
 
 > scrypt@6.0.3 install /workspace/source/node_modules/scrypt
 > node-gyp rebuild
@@ -111,7 +146,7 @@ In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
 In file included from ../src/node-boilerplate/inc/scrypt_params_async.h:28:0,
                  from ../src/node-boilerplate/scrypt_params_async.cc:4:
 ../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
-../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
        callback->Call(1, argv);
                              ^
 In file included from ../src/node-boilerplate/scrypt_params_async.cc:4:0:
@@ -129,7 +164,7 @@ In file included from ../src/node-boilerplate/scrypt_params_async.cc:4:0:
        osfreemem(info[3]->IntegerValue())
                                        ^
 ../src/node-boilerplate/scrypt_params_async.cc: In member function ‘virtual void ScryptParamsAsyncWorker::HandleOKCallback()’:
-../src/node-boilerplate/scrypt_params_async.cc:32:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/scrypt_params_async.cc:32:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
    callback->Call(2, argv);
                          ^
   CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_params_sync.o
@@ -174,7 +209,7 @@ In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
 In file included from ../src/node-boilerplate/inc/scrypt_kdf_async.h:28:0,
                  from ../src/node-boilerplate/scrypt_kdf_async.cc:4:
 ../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
-../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
        callback->Call(1, argv);
                              ^
 In file included from ../src/node-boilerplate/scrypt_kdf_async.cc:4:0:
@@ -186,7 +221,7 @@ In file included from ../src/node-boilerplate/scrypt_kdf_async.cc:4:0:
 ../src/node-boilerplate/scrypt_kdf_async.cc:25:62: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
          GetFromPersistent("ScryptPeristentObject")->ToObject()->Get(Nan::New("KDFResult").ToLocalChecked())
                                                               ^
-../src/node-boilerplate/scrypt_kdf_async.cc:28:27: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/scrypt_kdf_async.cc:28:27: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
      callback->Call(2, argv);
                            ^
   CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_kdf_sync.o
@@ -234,11 +269,11 @@ In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
 In file included from ../src/node-boilerplate/inc/scrypt_kdf-verify_async.h:28:0,
                  from ../src/node-boilerplate/scrypt_kdf-verify_async.cc:4:
 ../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
-../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
        callback->Call(1, argv);
                              ^
 ../src/node-boilerplate/scrypt_kdf-verify_async.cc: In member function ‘virtual void ScryptKDFVerifyAsyncWorker::HandleOKCallback()’:
-../src/node-boilerplate/scrypt_kdf-verify_async.cc:30:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/scrypt_kdf-verify_async.cc:30:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
    callback->Call(2, argv);
                          ^
   CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_hash_sync.o
@@ -277,7 +312,7 @@ In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
 In file included from ../src/node-boilerplate/inc/scrypt_hash_async.h:28:0,
                  from ../src/node-boilerplate/scrypt_hash_async.cc:28:
 ../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
-../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
        callback->Call(1, argv);
                              ^
 In file included from ../src/node-boilerplate/scrypt_hash_async.cc:28:0:
@@ -292,13 +327,40 @@ In file included from ../src/node-boilerplate/scrypt_hash_async.cc:28:0:
 ../src/node-boilerplate/scrypt_hash_async.cc:49:58: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
      GetFromPersistent("ScryptPeristentObject")->ToObject()->Get(Nan::New("HashBuffer").ToLocalChecked())
                                                           ^
-../src/node-boilerplate/scrypt_hash_async.cc:52:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1674) [-Wdeprecated-declarations]
+../src/node-boilerplate/scrypt_hash_async.cc:52:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
    callback->Call(2, argv);
                          ^
   CXX(target) Release/obj.target/scrypt/scrypt_node.o
   SOLINK_MODULE(target) Release/obj.target/scrypt.node
   COPY Release/scrypt.node
 make: Leaving directory `/workspace/source/node_modules/scrypt/build'
+
+> secp256k1@3.7.1 install /workspace/source/node_modules/secp256k1
+> npm run rebuild || echo "Secp256k1 bindings compilation fail. Pure JS implementation will be used."
+
+
+> secp256k1@3.7.1 rebuild /workspace/source/node_modules/secp256k1
+> node-gyp rebuild
+
+make: Entering directory `/workspace/source/node_modules/secp256k1/build'
+  CXX(target) Release/obj.target/secp256k1/src/addon.o
+  CXX(target) Release/obj.target/secp256k1/src/privatekey.o
+../src/privatekey.cc: In function ‘Nan::NAN_METHOD_RETURN_TYPE privateKeyNegate(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/privatekey.cc:73:61: warning: ignoring return value of ‘int secp256k1_ec_privkey_negate(const secp256k1_context*, unsigned char*)’, declared with attribute warn_unused_result [-Wunused-result]
+   secp256k1_ec_privkey_negate(secp256k1ctx, &private_key[0]);
+                                                             ^
+At global scope:
+cc1plus: warning: unrecognized command line option "-Wno-nonnull-compare" [enabled by default]
+  CXX(target) Release/obj.target/secp256k1/src/publickey.o
+  CXX(target) Release/obj.target/secp256k1/src/signature.o
+  CXX(target) Release/obj.target/secp256k1/src/ecdsa.o
+  CXX(target) Release/obj.target/secp256k1/src/ecdh.o
+  CC(target) Release/obj.target/secp256k1/src/secp256k1-src/src/secp256k1.o
+  CC(target) Release/obj.target/secp256k1/src/secp256k1-src/contrib/lax_der_parsing.o
+  CC(target) Release/obj.target/secp256k1/src/secp256k1-src/contrib/lax_der_privatekey_parsing.o
+  SOLINK_MODULE(target) Release/obj.target/secp256k1.node
+  COPY Release/secp256k1.node
+make: Leaving directory `/workspace/source/node_modules/secp256k1/build'
 
 > sha3@1.2.3 install /workspace/source/node_modules/sha3
 > node-gyp rebuild
@@ -313,7 +375,7 @@ make: Entering directory `/workspace/source/node_modules/sha3/build'
   COPY Release/sha3.node
 make: Leaving directory `/workspace/source/node_modules/sha3/build'
 
-> websocket@git://github.com/frozeman/WebSocket-Node.git#6c72925e3f8aaaea8dc8450f97627e85263999f2 install /workspace/source/node_modules/web3-providers-ws/node_modules/websocket
+> websocket@1.0.29 install /workspace/source/node_modules/web3-providers-ws/node_modules/websocket
 > (node-gyp rebuild 2> builderror.log) || (exit 0)
 
 make: Entering directory `/workspace/source/node_modules/web3-providers-ws/node_modules/websocket/build'
@@ -325,19 +387,7 @@ make: Entering directory `/workspace/source/node_modules/web3-providers-ws/node_
   COPY Release/validation.node
 make: Leaving directory `/workspace/source/node_modules/web3-providers-ws/node_modules/websocket/build'
 
-> websocket@github:web3-js/WebSocket-Node#905deb4812572b344f5801f8c9ce8bb02799d82e install /workspace/source/node_modules/web3/node_modules/websocket
-> (node-gyp rebuild 2> builderror.log) || (exit 0)
-
-make: Entering directory `/workspace/source/node_modules/web3/node_modules/websocket/build'
-  CXX(target) Release/obj.target/bufferutil/src/bufferutil.o
-  SOLINK_MODULE(target) Release/obj.target/bufferutil.node
-  COPY Release/bufferutil.node
-  CXX(target) Release/obj.target/validation/src/validation.o
-  SOLINK_MODULE(target) Release/obj.target/validation.node
-  COPY Release/validation.node
-make: Leaving directory `/workspace/source/node_modules/web3/node_modules/websocket/build'
-
-> websocket@1.0.28 install /workspace/source/node_modules/websocket
+> websocket@1.0.30 install /workspace/source/node_modules/websocket
 > (node-gyp rebuild 2> builderror.log) || (exit 0)
 
 make: Entering directory `/workspace/source/node_modules/websocket/build'
@@ -348,81 +398,90 @@ make: Entering directory `/workspace/source/node_modules/websocket/build'
   SOLINK_MODULE(target) Release/obj.target/validation.node
   COPY Release/validation.node
 make: Leaving directory `/workspace/source/node_modules/websocket/build'
+npm notice created a lockfile as package-lock.json. You should commit this file.
 npm WARN standardbounties-relayer@1.0.0 No repository field.
 
-added 440 packages from 249 contributors and audited 139948 packages in 30.104s
-found 1 low severity vulnerability
+added 403 packages from 260 contributors and audited 61530 packages in 39.862s
+found 2 low severity vulnerabilities
   run `npm audit fix` to fix them, or `npm audit` for details
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npm-test[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npm-test[0m
 
 > standardbounties-relayer@1.0.0 test /workspace/source
 > echo 'Error: no test specified'
 
 Error: no test specified
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
-[36mINFO[0m[0000] Downloading base image node:9-slim           
-[36mINFO[0m[0000] Error while retrieving image from cache: getting file info: stat /workspace/sha256:0e0175bbe4f8d9d104590d8d2c591017874e30977cb71aaff1cf6fa99479575c: no such file or directory 
-[36mINFO[0m[0000] Downloading base image node:9-slim           
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] Downloading base image node:10.6.0           
+[36mINFO[0m[0000] Error while retrieving image from cache: getting file info: stat /workspace/sha256:91aabb2c118b03a5d8fd22efd07530a64309dcd41a8a11b83237edd8de3d00c2: no such file or directory 
+[36mINFO[0m[0000] Downloading base image node:10.6.0           
 [36mINFO[0m[0000] Executing 0 build triggers                   
 [36mINFO[0m[0000] cmd: EXPOSE                                  
-[36mINFO[0m[0000] Adding exposed port: 8080/tcp                
+[36mINFO[0m[0000] Adding exposed port: 3000/tcp                
 [36mINFO[0m[0000] Using files from context: [/workspace/source] 
-[36mINFO[0m[0001] Skipping unpacking as no commands require it. 
-[36mINFO[0m[0001] Taking snapshot of full filesystem...        
-[36mINFO[0m[0001] ENV PORT 8080                                
-[36mINFO[0m[0001] No files changed in this command, skipping snapshotting. 
-[36mINFO[0m[0001] EXPOSE 8080                                  
-[36mINFO[0m[0001] cmd: EXPOSE                                  
-[36mINFO[0m[0001] Adding exposed port: 8080/tcp                
-[36mINFO[0m[0001] No files changed in this command, skipping snapshotting. 
-[36mINFO[0m[0001] WORKDIR /usr/src/app                         
-[36mINFO[0m[0001] cmd: workdir                                 
-[36mINFO[0m[0001] Changed working directory to /usr/src/app    
-[36mINFO[0m[0001] Creating directory /usr/src/app              
-[36mINFO[0m[0001] Taking snapshot of files...                  
-[36mINFO[0m[0001] Using files from context: [/workspace/source] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] ENV PORT 3000                                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] EXPOSE 3000                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 3000/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] WORKDIR /usr/src/app                         
+[36mINFO[0m[0000] cmd: workdir                                 
+[36mINFO[0m[0000] Changed working directory to /usr/src/app    
+[36mINFO[0m[0000] Creating directory /usr/src/app              
+[36mINFO[0m[0000] Taking snapshot of files...                  
+[36mINFO[0m[0000] Using files from context: [/workspace/source] 
 [36mINFO[0m[0001] COPY . .                                     
 [36mINFO[0m[0003] Taking snapshot of files...                  
 [36mINFO[0m[0006] CMD ["npm", "start"]                         
 [36mINFO[0m[0006] No files changed in this command, skipping snapshotting. 
-2019/09/24 14:55:38 pushed blob: sha256:bc46144dfcc6fc2e5f3f9134ba02af49231c3827ad4a1c464a21ee653f42dcaa
-2019/09/24 14:55:38 pushed blob: sha256:cd9e68c18eded39704da47dbd77a5b8fcd6ae5d0d912c2b755c4e59e0b8ea3d4
-2019/09/24 14:55:38 pushed blob: sha256:196b8e3c919d5639193ba6c6e54774528942041bbc37606631a2250502985c3c
-2019/09/24 14:55:38 pushed blob: sha256:e01bd28a434b56ffd2a3fe9aa99b9b69aecca69904843edd30b1ee7150d79904
-2019/09/24 14:55:38 pushed blob: sha256:7d083412657baa2dafba8d093034ef26f9ed2c90fb6ed95f76bb55aff03ed429
-2019/09/24 14:55:42 pushed blob: sha256:5bba3ecb4cd6374a19da45f2a3db0a9c0804984358b3bb4b666c28944016e5ff
-2019/09/24 14:55:42 pushed blob: sha256:b6bbf438cc32664385d6cfce390054b5d80e2c22ce2c7f6ed68ca1bc00a669d5
-2019/09/24 14:55:43 pushed blob: sha256:a88538b9cd05cfa611e43a25582a95ad7879f6fa708b0386a26b71ee62235bb3
-2019/09/24 14:55:43 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer:0.0.2: digest: sha256:a00367112f4142c6bc75180b1c103b921d77ad3cc29e8fbfe75c4c322c8236c7 size: 1407
+2019/09/25 16:36:02 existing blob: sha256:eda527043444611a95f94d07d2023737ce43a475d24d15e8f30aa1af76ababfa
+2019/09/25 16:36:03 existing blob: sha256:46dde23c37b3419122bb597461c1a48bdea1842aaae7dbe728dfa20a9aabe11b
+2019/09/25 16:36:03 existing blob: sha256:e7428f935583e84197ae834885e62b69922f1ce7e8672a3746295555b3853fc7
+2019/09/25 16:36:03 existing blob: sha256:d05590b5f646c9efed1e71d28b4584b64a7019cf755230c615522e44f77d0a5c
+2019/09/25 16:36:03 existing blob: sha256:80d986fe44e314470aff929c36b0a1411b3e839ef980e6a6a5bd7dc820e8387b
+2019/09/25 16:36:03 existing blob: sha256:d660b1f15b9bfb8142f50b518156f2d364d9642fe05854538b060498e2f7928d
+2019/09/25 16:36:03 existing blob: sha256:6ebaeb0745895220f609d4aa703e4563c39de239a2d00b85bece23a3ca3ac735
+2019/09/25 16:36:03 existing blob: sha256:f3088daa88870f9bb1387127be4748c4ed81b0f11dde25098ff960c16ee3d5fd
+2019/09/25 16:36:03 pushed blob: sha256:a6dd265df428557a91f5b8d2e90dcf28a738ef8c09da8aede51a0ca9e6a08263
+2019/09/25 16:36:03 pushed blob: sha256:4e6bb900dd49d91952458ebaf0feba0437ee28a43c73a363d401eb315fca50e4
+2019/09/25 16:36:07 pushed blob: sha256:f2703385c46b5888ea09c34dd54ea80b26d6357b1bef1a5479f5a35acec9f620
+2019/09/25 16:36:07 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer:0.0.9: digest: sha256:356275602d69f1cd896b45449363d07f2b541cd5a0317df4661db0a6e4ae77a0 size: 1903
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
 no CVE provider running in the current ** namespace so skip adding image to be analysed
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
 Converted /workspace/source/charts/standardbounties-relayer to an unshallow repository
-Generating change log from git ref c8321c223ae249d503725f5286e626621ff74b04 => c9a3017c0207df3a8c22c46f9e0fe8e5ebaba49c
-Associating user x-0 in users.jenkins.io with email ericjohn.juta@consensys.net to git GitProvider user with login -0 as emails match
-Adding label jenkins.io/git-github-userid=-0 to user x-0 in users.jenkins.io
-WARNING: Failed to enrich commit d15580a991c62d895640ad85463f2e604f03f71f with issues: User.jenkins.io "x-0" is invalid: metadata.labels: Invalid value: "-0": a valid label must be an empty string or consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyValue',  or 'my_value',  or '12345', regex used for validation is '(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])?')
+Generating change log from git ref ba61cce38f224d965b87c0deb24669c4882f4cfa => 74de53f3a72f46bea55e5537a36b4d590ccb9f50
+WARNING: Failed to enrich commit 493df69cde046adb7cf273c2a0658c41b959d0d3 with issues: selected more than one user from users.jenkins.io: [****** x-0]
+WARNING: Failed to enrich commit 493df69cde046adb7cf273c2a0658c41b959d0d3 with issues: selected more than one user from users.jenkins.io: [****** x-0]
 Finding issues in commit messages using git format
-WARNING: No release found for Bounties-Network/standardbounties-relayer and tag v0.0.2 so creating a new release
-Updated the release information at https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.2
+WARNING: Failed to enrich commit 844825674d7917dd51a768c3528e06ab38ac2cc9 with issues: selected more than one user from users.jenkins.io: [****** x-0]
+WARNING: Failed to enrich commit 844825674d7917dd51a768c3528e06ab38ac2cc9 with issues: selected more than one user from users.jenkins.io: [****** x-0]
+WARNING: No release found for Bounties-Network/standardbounties-relayer and tag v0.0.9 so creating a new release
+Updated the release information at https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.9
 generated: /workspace/source/charts/standardbounties-relayer/templates/release.yaml
-Created Release standardbounties-relayer-0-0-2 resource in namespace **
-Updating PipelineActivity bounties-network-standardbounties-relayer-master-2 with version 0.0.2
-Updated PipelineActivities bounties-network-standardbounties-relayer-master-2 with release notes URL: https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.2
+Created Release standardbounties-relayer-0-0-9 resource in namespace **
+Updating PipelineActivity bounties-network-standardbounties-relayer-master-2 with version 0.0.9
+Updated PipelineActivities bounties-network-standardbounties-relayer-master-2 with release notes URL: https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.9
 
-Showing logs for build [32mbounties-network-standardbounti-xz2vs-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
 WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
 Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
 Successfully added Helm repository storage.googleapis.com.
 Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
 Successfully added Helm repository jenkins-x-chartmuseum.
 WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
-Uploading chart file standardbounties-relayer-0.0.2.tgz to http://jenkins-x-chartmuseum:8080/api/charts
-Received 401 response: {"error":"unauthorized"}
-error: Failed to post chart to http://jenkins-x-chartmuseum:8080/api/charts due to response 401: {"error":"unauthorized"}
-[31m
-Pipeline failed on stage 'from-build-pack' : container 'step-promote-helm-release'. The execution of the pipeline has stopped.[0m
+Uploading chart file standardbounties-relayer-0.0.9.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+
+Showing logs for build [32mbounties-network-standardbounti-pnmj8-2[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
+WARNING: prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+Promoting app standardbounties-relayer version 0.0.9 to namespace **-staging
+Created Pull Request: https://github.com/ConsenSys/environment-openfora-staging/pull/5
+Pull Request https://github.com/ConsenSys/environment-openfora-staging/pull/5 is merged at sha 6f6fe9fea41116ac6755f3d8edad1af47ff014ee
+Pull Request merged but we are not waiting for the update pipeline to complete!
