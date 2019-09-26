@@ -458,9 +458,9 @@ app.post("/relay", async (req, res, next) => {
       console.log("Is that equal?", sender, signer);
 
       if (signer == sender) {
-        // Omit the firt two parameters (BountiesMetaTxRelayer address, method)
-        const methodParams = _.map(_.filter(params, (obj, i) => i > 1), o => o.v);
-        console.log("Params list", methodParams);
+        // Omit the firt two parameters (BountiesMetaTxRelayer address, method) for some weird reason <<<< y u do dis
+        const methodParams = paramsHash[1].slice(2, paramsHash.length);
+        console.log("MetaTX contract method Params list", methodParams);
 
         try {
           const estimateGas = await BountiesMetaTxRelayer.methods[req.body.method](
