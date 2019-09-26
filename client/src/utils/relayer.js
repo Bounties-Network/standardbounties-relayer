@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-const RELAYER_BASE_URI = 'https://standardbounties-relayer.jx-staging.bounties-network-flow.com';
+const RELAYER_BASE_URI = "http://localhost:3001";
 
 const getTotalBounties = () =>
   new Promise(async (resolve, reject) => {
