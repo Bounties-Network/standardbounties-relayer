@@ -109,6 +109,7 @@ export default class Bounties extends Component {
     const { web3 } = this.props;
 
     const sender = web3.utils.toChecksumAddress(account);
+    console.log(sender);
     const latestNonce = await relayerContract.methods.replayNonce(sender).call();
     console.log("latestNonce from meta tx contract: ", latestNonce);
     const nonce = web3.utils.hexToNumber(latestNonce);
@@ -118,17 +119,26 @@ export default class Bounties extends Component {
     if (method === "metaFulfillBounty") {
       const fulfillers = [sender];
       const data = "QmSeaHjNf6MnQ94GnnkKY5qZYFEDGTqWhvG5NgZdNom1Sa";
+      console.log(relayerContract._address);
       params = [
         ["address", "string", "uint", "address[]", "string", "uint256"],
-        [relayerContract.options.address, method, bountyId, fulfillers, data, nonce]
+        [web3.utils.toChecksumAddress(relayerContract._address), "metaFulfillBounty", bountyId, fulfillers, data, nonce]
       ];
     } else if (method === "metaUpdateFulfillment") {
-      const fulfillmentId = 1; //Meh just use first, all the same fulfillment address whilst testing anyways
+      const fulfillmentId = 0; //Meh just use first, all the same fulfillment address whilst testing anyways
       const fulfillers = [sender];
       const data = "QmSTHVi3USdTriNR5gPfFyhQwVqCoD4H33UyHJGqN3vQVv";
       params = [
         ["address", "string", "uint", "uint", "address[]", "string", "uint256"],
-        [relayerContract.options.address, method, bountyId, fulfillmentId, fulfillers, data, nonce]
+        [
+          web3.utils.toChecksumAddress(relayerContract._address),
+          "metaUpdateFulfillment",
+          bountyId,
+          fulfillmentId,
+          fulfillers,
+          data,
+          nonce
+        ]
       ];
     }
     console.log("Params", params);
