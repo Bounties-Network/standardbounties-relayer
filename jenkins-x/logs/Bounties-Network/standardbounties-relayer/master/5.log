@@ -1,0 +1,485 @@
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-credential-initializer-c58vw[0m
+{"level":"warn","ts":1569519205.1123948,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569519205.1128306,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-working-dir-initializer-284j6[0m
+{"level":"warn","ts":1569519206.0918906,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1569519206.0930028,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source\""}
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-git-source-meta-bounties-network-standardb-jjxf7[0m
+{"level":"warn","ts":1569519214.1569462,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569519214.558107,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ 653ceab6c3e12f82c549a16993586aba72a6352d in path /workspace/source"}
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:653ceab6c3e12f82c549a16993586aba72a6352d
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-merge-pull-refs[0m
+SKIP merge-pull-refs: Nothing to merge
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-create-effective-pipeline[0m
+Deleting and cloning the Jenkins X versions repo
+Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.**/jenkins-x-versions
+Effective pipeline written to jenkins-x-release-effective.yml
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mmeta-pipeline[0m and container [32mstep-create-tekton-crds[0m
+running command: echo \$(**-release-version) > VERSION
+
+running command: ** step tag --version \$(cat VERSION)
+Updating chart version in charts/standardbounties-relayer/Chart.yaml to 0.0.12
+Updating repository in charts/standardbounties-relayer/values.yaml to 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer
+Updating tag in charts/standardbounties-relayer/values.yaml to 0.0.12
+Tag v0.0.12 created and pushed to remote origin
+
+WARNING: failed to find secret kaniko-secret in namespace **: secrets "kaniko-secret" not found
+PipelineActivity for Bounties-Network-standardbounties-relayer-master-5
+Applying changes 
+upserted PipelineResource bounties-network-standardbounti for the git repository https://github.com/Bounties-Network/standardbounties-relayer.git
+upserted Task bounties-network-standardbounti-vbdml-from-build-pack-5
+upserted Pipeline bounties-network-standardbounti-vbdml-5
+created PipelineRun bounties-network-standardbounti-vbdml-5
+created PipelineStructure bounties-network-standardbounti-vbdml-5
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-hc77k[0m
+{"level":"warn","ts":1569519225.951916,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569519225.95288,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-p9s7d[0m
+{"level":"warn","ts":1569519226.9338603,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1569519226.9350767,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/charts/standardbounties-relayer\""}
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-bounties-network-standardbounti-gvv44[0m
+{"level":"warn","ts":1569519233.0271745,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1569519233.423942,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/Bounties-Network/standardbounties-relayer.git @ v0.0.12 in path /workspace/source"}
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:653ceab6c3e12f82c549a16993586aba72a6352d
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npmrc[0m
+WARNING: failed to find Secret npm-token in namespace **
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npm-install[0m
+npm WARN deprecated truffle-hdwallet-provider@1.0.17: WARNING: This package has been renamed to @truffle/hdwallet-provider.
+
+> scrypt@6.0.3 preinstall /workspace/source/node_modules/scrypt
+> node node-scrypt-preinstall.js
+
+
+> keccak@1.4.0 install /workspace/source/node_modules/keccak
+> npm run rebuild || echo "Keccak bindings compilation fail. Pure JS implementation will be used."
+
+
+> keccak@1.4.0 rebuild /workspace/source/node_modules/keccak
+> node-gyp rebuild
+
+make: Entering directory `/workspace/source/node_modules/keccak/build'
+  CXX(target) Release/obj.target/keccak/src/addon.o
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::Initialize(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:37:47: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     unsigned int rate = info[0]->IntegerValue();
+                                               ^
+../src/addon.cc:38:51: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     unsigned int capacity = info[1]->IntegerValue();
+                                                   ^
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::AbsorbLastFewBits(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:56:48: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     unsigned char bits = info[0]->IntegerValue();
+                                                ^
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::Squeeze(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:64:43: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+     size_t length = info[0]->IntegerValue();
+                                           ^
+../src/addon.cc: In static member function ‘static Nan::NAN_METHOD_RETURN_TYPE KeccakWrapper::Copy(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/addon.cc:75:82: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+     KeccakWrapper* to = Nan::ObjectWrap::Unwrap<KeccakWrapper>(info[0]->ToObject());
+                                                                                  ^
+  CC(target) Release/obj.target/keccak/src/libkeccak/KeccakSponge.o
+  CC(target) Release/obj.target/keccak/src/libkeccak/KeccakP-1600-reference.o
+  SOLINK_MODULE(target) Release/obj.target/keccak.node
+  COPY Release/keccak.node
+make: Leaving directory `/workspace/source/node_modules/keccak/build'
+
+> scrypt@6.0.3 install /workspace/source/node_modules/scrypt
+> node-gyp rebuild
+
+make: Entering directory `/workspace/source/node_modules/scrypt/build'
+  SOLINK_MODULE(target) Release/obj.target/copied_files.node
+  COPY Release/copied_files.node
+  CC(target) Release/obj.target/scrypt_wrapper/src/util/memlimit.o
+  CC(target) Release/obj.target/scrypt_wrapper/src/scryptwrapper/keyderivation.o
+  CC(target) Release/obj.target/scrypt_wrapper/src/scryptwrapper/pickparams.o
+  CC(target) Release/obj.target/scrypt_wrapper/src/scryptwrapper/hash.o
+  AR(target) Release/obj.target/scrypt_wrapper.a
+  COPY Release/scrypt_wrapper.a
+  CC(target) Release/obj.target/scrypt_lib/scrypt/scrypt-1.2.0/lib/crypto/crypto_scrypt.o
+  CC(target) Release/obj.target/scrypt_lib/scrypt/scrypt-1.2.0/lib/crypto/crypto_scrypt_smix.o
+  CC(target) Release/obj.target/scrypt_lib/scrypt/scrypt-1.2.0/libcperciva/util/warnp.o
+  CC(target) Release/obj.target/scrypt_lib/scrypt/scrypt-1.2.0/libcperciva/alg/sha256.o
+  CC(target) Release/obj.target/scrypt_lib/scrypt/scrypt-1.2.0/libcperciva/util/insecure_memzero.o
+  CC(target) Release/obj.target/scrypt_lib/scrypt/scrypt-1.2.0/lib/scryptenc/scryptenc_cpuperf.o
+  AR(target) Release/obj.target/scrypt_lib.a
+  COPY Release/scrypt_lib.a
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_common.o
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_params_async.o
+In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
+                 from ../src/node-boilerplate/inc/scrypt_params_async.h:28,
+                 from ../src/node-boilerplate/scrypt_params_async.cc:4:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+In file included from ../src/node-boilerplate/inc/scrypt_params_async.h:28:0,
+                 from ../src/node-boilerplate/scrypt_params_async.cc:4:
+../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+       callback->Call(1, argv);
+                             ^
+In file included from ../src/node-boilerplate/scrypt_params_async.cc:4:0:
+../src/node-boilerplate/inc/scrypt_params_async.h: In constructor ‘ScryptParamsAsyncWorker::ScryptParamsAsyncWorker(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/node-boilerplate/inc/scrypt_params_async.h:35:36: warning: ‘double v8::Value::NumberValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2569): Use maybe version [-Wdeprecated-declarations]
+       maxtime(info[0]->NumberValue()),
+                                    ^
+../src/node-boilerplate/inc/scrypt_params_async.h:36:39: warning: ‘double v8::Value::NumberValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2569): Use maybe version [-Wdeprecated-declarations]
+       maxmemfrac(info[1]->NumberValue()),
+                                       ^
+../src/node-boilerplate/inc/scrypt_params_async.h:37:36: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+       maxmem(info[2]->IntegerValue()),
+                                    ^
+../src/node-boilerplate/inc/scrypt_params_async.h:38:39: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+       osfreemem(info[3]->IntegerValue())
+                                       ^
+../src/node-boilerplate/scrypt_params_async.cc: In member function ‘virtual void ScryptParamsAsyncWorker::HandleOKCallback()’:
+../src/node-boilerplate/scrypt_params_async.cc:32:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+   callback->Call(2, argv);
+                         ^
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_params_sync.o
+In file included from ../src/node-boilerplate/scrypt_params_sync.cc:4:0:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+../src/node-boilerplate/scrypt_params_sync.cc: In function ‘Nan::NAN_METHOD_RETURN_TYPE paramsSync(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/node-boilerplate/scrypt_params_sync.cc:25:47: warning: ‘double v8::Value::NumberValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2569): Use maybe version [-Wdeprecated-declarations]
+   const double maxtime = info[0]->NumberValue();
+                                               ^
+../src/node-boilerplate/scrypt_params_sync.cc:26:47: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+   const size_t maxmem = info[2]->IntegerValue();
+                                               ^
+../src/node-boilerplate/scrypt_params_sync.cc:27:50: warning: ‘double v8::Value::NumberValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2569): Use maybe version [-Wdeprecated-declarations]
+   const double maxmemfrac = info[1]->NumberValue();
+                                                  ^
+../src/node-boilerplate/scrypt_params_sync.cc:28:50: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+   const size_t osfreemem = info[3]->IntegerValue();
+                                                  ^
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_kdf_async.o
+In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
+                 from ../src/node-boilerplate/inc/scrypt_kdf_async.h:28,
+                 from ../src/node-boilerplate/scrypt_kdf_async.cc:4:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+In file included from ../src/node-boilerplate/inc/scrypt_kdf_async.h:28:0,
+                 from ../src/node-boilerplate/scrypt_kdf_async.cc:4:
+../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+       callback->Call(1, argv);
+                             ^
+In file included from ../src/node-boilerplate/scrypt_kdf_async.cc:4:0:
+../src/node-boilerplate/inc/scrypt_kdf_async.h: In constructor ‘ScryptKDFAsyncWorker::ScryptKDFAsyncWorker(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/node-boilerplate/inc/scrypt_kdf_async.h:36:32: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+       params(args[1]->ToObject()),
+                                ^
+../src/node-boilerplate/scrypt_kdf_async.cc: In member function ‘virtual void ScryptKDFAsyncWorker::HandleOKCallback()’:
+../src/node-boilerplate/scrypt_kdf_async.cc:25:62: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+         GetFromPersistent("ScryptPeristentObject")->ToObject()->Get(Nan::New("KDFResult").ToLocalChecked())
+                                                              ^
+../src/node-boilerplate/scrypt_kdf_async.cc:28:27: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+     callback->Call(2, argv);
+                           ^
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_kdf_sync.o
+In file included from ../src/node-boilerplate/scrypt_kdf_sync.cc:4:0:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+../src/node-boilerplate/scrypt_kdf_sync.cc: In function ‘Nan::NAN_METHOD_RETURN_TYPE kdfSync(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/node-boilerplate/scrypt_kdf_sync.cc:29:57: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+     const NodeScrypt::Params params = info[1]->ToObject();
+                                                         ^
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_kdf-verify_sync.o
+In file included from ../src/node-boilerplate/scrypt_kdf-verify_sync.cc:4:0:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_kdf-verify_async.o
+In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
+                 from ../src/node-boilerplate/inc/scrypt_kdf-verify_async.h:28,
+                 from ../src/node-boilerplate/scrypt_kdf-verify_async.cc:4:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+In file included from ../src/node-boilerplate/inc/scrypt_kdf-verify_async.h:28:0,
+                 from ../src/node-boilerplate/scrypt_kdf-verify_async.cc:4:
+../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+       callback->Call(1, argv);
+                             ^
+../src/node-boilerplate/scrypt_kdf-verify_async.cc: In member function ‘virtual void ScryptKDFVerifyAsyncWorker::HandleOKCallback()’:
+../src/node-boilerplate/scrypt_kdf-verify_async.cc:30:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+   callback->Call(2, argv);
+                         ^
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_hash_sync.o
+In file included from ../src/node-boilerplate/scrypt_hash_sync.cc:4:0:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+../src/node-boilerplate/scrypt_hash_sync.cc: In function ‘Nan::NAN_METHOD_RETURN_TYPE hashSync(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/node-boilerplate/scrypt_hash_sync.cc:24:55: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+   const NodeScrypt::Params params = info[1]->ToObject();
+                                                       ^
+../src/node-boilerplate/scrypt_hash_sync.cc:25:50: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+   const size_t hash_size = info[2]->IntegerValue();
+                                                  ^
+  CXX(target) Release/obj.target/scrypt/src/node-boilerplate/scrypt_hash_async.o
+In file included from ../src/node-boilerplate/inc/scrypt_async.h:28:0,
+                 from ../src/node-boilerplate/inc/scrypt_hash_async.h:28,
+                 from ../src/node-boilerplate/scrypt_hash_async.cc:28:
+../src/node-boilerplate/inc/scrypt_common.h: In constructor ‘NodeScrypt::Params::Params(const v8::Local<v8::Object>&)’:
+../src/node-boilerplate/inc/scrypt_common.h:39:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       N(obj->Get(Nan::New("N").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:40:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       r(obj->Get(Nan::New("r").ToLocalChecked())->Uint32Value()),
+                                                               ^
+../src/node-boilerplate/inc/scrypt_common.h:41:63: warning: ‘uint32_t v8::Value::Uint32Value() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2571): Use maybe version [-Wdeprecated-declarations]
+       p(obj->Get(Nan::New("p").ToLocalChecked())->Uint32Value()) {}
+                                                               ^
+In file included from ../src/node-boilerplate/inc/scrypt_hash_async.h:28:0,
+                 from ../src/node-boilerplate/scrypt_hash_async.cc:28:
+../src/node-boilerplate/inc/scrypt_async.h: In member function ‘virtual void ScryptAsyncWorker::HandleErrorCallback()’:
+../src/node-boilerplate/inc/scrypt_async.h:53:29: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+       callback->Call(1, argv);
+                             ^
+In file included from ../src/node-boilerplate/scrypt_hash_async.cc:28:0:
+../src/node-boilerplate/inc/scrypt_hash_async.h: In constructor ‘ScryptHashAsyncWorker::ScryptHashAsyncWorker(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/node-boilerplate/inc/scrypt_hash_async.h:36:32: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+       params(info[1]->ToObject()),
+                                ^
+../src/node-boilerplate/inc/scrypt_hash_async.h:37:39: warning: ‘int64_t v8::Value::IntegerValue() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:2570): Use maybe version [-Wdeprecated-declarations]
+       hash_size(info[2]->IntegerValue()),
+                                       ^
+../src/node-boilerplate/scrypt_hash_async.cc: In member function ‘virtual void ScryptHashAsyncWorker::HandleOKCallback()’:
+../src/node-boilerplate/scrypt_hash_async.cc:49:58: warning: ‘v8::Local<v8::Object> v8::Value::ToObject() const’ is deprecated (declared at /builder/home/.node-gyp/11.15.0/include/node/v8.h:10257): Use maybe version [-Wdeprecated-declarations]
+     GetFromPersistent("ScryptPeristentObject")->ToObject()->Get(Nan::New("HashBuffer").ToLocalChecked())
+                                                          ^
+../src/node-boilerplate/scrypt_hash_async.cc:52:25: warning: ‘v8::Local<v8::Value> Nan::Callback::Call(int, v8::Local<v8::Value>*) const’ is deprecated (declared at ../../nan/nan.h:1740) [-Wdeprecated-declarations]
+   callback->Call(2, argv);
+                         ^
+  CXX(target) Release/obj.target/scrypt/scrypt_node.o
+  SOLINK_MODULE(target) Release/obj.target/scrypt.node
+  COPY Release/scrypt.node
+make: Leaving directory `/workspace/source/node_modules/scrypt/build'
+
+> secp256k1@3.7.1 install /workspace/source/node_modules/secp256k1
+> npm run rebuild || echo "Secp256k1 bindings compilation fail. Pure JS implementation will be used."
+
+
+> secp256k1@3.7.1 rebuild /workspace/source/node_modules/secp256k1
+> node-gyp rebuild
+
+make: Entering directory `/workspace/source/node_modules/secp256k1/build'
+  CXX(target) Release/obj.target/secp256k1/src/addon.o
+  CXX(target) Release/obj.target/secp256k1/src/privatekey.o
+../src/privatekey.cc: In function ‘Nan::NAN_METHOD_RETURN_TYPE privateKeyNegate(Nan::NAN_METHOD_ARGS_TYPE)’:
+../src/privatekey.cc:73:61: warning: ignoring return value of ‘int secp256k1_ec_privkey_negate(const secp256k1_context*, unsigned char*)’, declared with attribute warn_unused_result [-Wunused-result]
+   secp256k1_ec_privkey_negate(secp256k1ctx, &private_key[0]);
+                                                             ^
+At global scope:
+cc1plus: warning: unrecognized command line option "-Wno-nonnull-compare" [enabled by default]
+  CXX(target) Release/obj.target/secp256k1/src/publickey.o
+  CXX(target) Release/obj.target/secp256k1/src/signature.o
+  CXX(target) Release/obj.target/secp256k1/src/ecdsa.o
+  CXX(target) Release/obj.target/secp256k1/src/ecdh.o
+  CC(target) Release/obj.target/secp256k1/src/secp256k1-src/src/secp256k1.o
+  CC(target) Release/obj.target/secp256k1/src/secp256k1-src/contrib/lax_der_parsing.o
+  CC(target) Release/obj.target/secp256k1/src/secp256k1-src/contrib/lax_der_privatekey_parsing.o
+  SOLINK_MODULE(target) Release/obj.target/secp256k1.node
+  COPY Release/secp256k1.node
+make: Leaving directory `/workspace/source/node_modules/secp256k1/build'
+
+> sha3@1.2.3 install /workspace/source/node_modules/sha3
+> node-gyp rebuild
+
+make: Entering directory `/workspace/source/node_modules/sha3/build'
+  CXX(target) Release/obj.target/sha3/src/addon.o
+  CXX(target) Release/obj.target/sha3/src/displayIntermediateValues.o
+  CXX(target) Release/obj.target/sha3/src/KeccakF-1600-reference.o
+  CXX(target) Release/obj.target/sha3/src/KeccakNISTInterface.o
+  CXX(target) Release/obj.target/sha3/src/KeccakSponge.o
+  SOLINK_MODULE(target) Release/obj.target/sha3.node
+  COPY Release/sha3.node
+make: Leaving directory `/workspace/source/node_modules/sha3/build'
+
+> websocket@1.0.29 install /workspace/source/node_modules/web3-providers-ws/node_modules/websocket
+> (node-gyp rebuild 2> builderror.log) || (exit 0)
+
+make: Entering directory `/workspace/source/node_modules/web3-providers-ws/node_modules/websocket/build'
+  CXX(target) Release/obj.target/bufferutil/src/bufferutil.o
+  SOLINK_MODULE(target) Release/obj.target/bufferutil.node
+  COPY Release/bufferutil.node
+  CXX(target) Release/obj.target/validation/src/validation.o
+  SOLINK_MODULE(target) Release/obj.target/validation.node
+  COPY Release/validation.node
+make: Leaving directory `/workspace/source/node_modules/web3-providers-ws/node_modules/websocket/build'
+
+> websocket@1.0.30 install /workspace/source/node_modules/websocket
+> (node-gyp rebuild 2> builderror.log) || (exit 0)
+
+make: Entering directory `/workspace/source/node_modules/websocket/build'
+  CXX(target) Release/obj.target/bufferutil/src/bufferutil.o
+  SOLINK_MODULE(target) Release/obj.target/bufferutil.node
+  COPY Release/bufferutil.node
+  CXX(target) Release/obj.target/validation/src/validation.o
+  SOLINK_MODULE(target) Release/obj.target/validation.node
+  COPY Release/validation.node
+make: Leaving directory `/workspace/source/node_modules/websocket/build'
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN standardbounties-relayer@1.0.0 No repository field.
+
+added 404 packages from 260 contributors and audited 61530 packages in 36.356s
+found 2 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-npm-test[0m
+
+> standardbounties-relayer@1.0.0 test /workspace/source
+> echo 'Error: no test specified'
+
+Error: no test specified
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+[36mINFO[0m[0000] Downloading base image node:10.6.0           
+[36mINFO[0m[0000] Error while retrieving image from cache: getting file info: stat /workspace/sha256:91aabb2c118b03a5d8fd22efd07530a64309dcd41a8a11b83237edd8de3d00c2: no such file or directory 
+[36mINFO[0m[0000] Downloading base image node:10.6.0           
+[36mINFO[0m[0000] Executing 0 build triggers                   
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 3001/tcp                
+[36mINFO[0m[0000] Using files from context: [/workspace/source] 
+[36mINFO[0m[0000] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0000] Taking snapshot of full filesystem...        
+[36mINFO[0m[0000] ENV PORT 3001                                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] EXPOSE 3001                                  
+[36mINFO[0m[0000] cmd: EXPOSE                                  
+[36mINFO[0m[0000] Adding exposed port: 3001/tcp                
+[36mINFO[0m[0000] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0000] WORKDIR /usr/src/app                         
+[36mINFO[0m[0000] cmd: workdir                                 
+[36mINFO[0m[0000] Changed working directory to /usr/src/app    
+[36mINFO[0m[0000] Creating directory /usr/src/app              
+[36mINFO[0m[0000] Taking snapshot of files...                  
+[36mINFO[0m[0000] Using files from context: [/workspace/source] 
+[36mINFO[0m[0000] COPY . .                                     
+[36mINFO[0m[0002] Taking snapshot of files...                  
+[36mINFO[0m[0003] CMD ["npm", "start"]                         
+[36mINFO[0m[0003] No files changed in this command, skipping snapshotting. 
+2019/09/26 17:34:37 existing blob: sha256:80d986fe44e314470aff929c36b0a1411b3e839ef980e6a6a5bd7dc820e8387b
+2019/09/26 17:34:37 existing blob: sha256:f3088daa88870f9bb1387127be4748c4ed81b0f11dde25098ff960c16ee3d5fd
+2019/09/26 17:34:37 existing blob: sha256:d660b1f15b9bfb8142f50b518156f2d364d9642fe05854538b060498e2f7928d
+2019/09/26 17:34:37 existing blob: sha256:d05590b5f646c9efed1e71d28b4584b64a7019cf755230c615522e44f77d0a5c
+2019/09/26 17:34:37 existing blob: sha256:46dde23c37b3419122bb597461c1a48bdea1842aaae7dbe728dfa20a9aabe11b
+2019/09/26 17:34:37 existing blob: sha256:6ebaeb0745895220f609d4aa703e4563c39de239a2d00b85bece23a3ca3ac735
+2019/09/26 17:34:37 existing blob: sha256:eda527043444611a95f94d07d2023737ce43a475d24d15e8f30aa1af76ababfa
+2019/09/26 17:34:37 pushed blob: sha256:fb69255e6ebfcefa4aa41ae98e48bd24cc77a55052169d5cb7a607c4a7da79c4
+2019/09/26 17:34:37 pushed blob: sha256:ec4748edf8cbdba0165f4782049108079c893034a56ce12d4ad13a3c1a77931b
+2019/09/26 17:34:38 existing blob: sha256:e7428f935583e84197ae834885e62b69922f1ce7e8672a3746295555b3853fc7
+2019/09/26 17:34:41 pushed blob: sha256:ee105e673ce3c966ca1f8b3db726fd35d8c219b54b8732fba94c7a52443f7243
+2019/09/26 17:34:41 802922962628.dkr.ecr.us-east-1.amazonaws.com/bounties-network/standardbounties-relayer:0.0.12: digest: sha256:10397878c02b1d48e63b2449edbe967f7ccdb77b322faf8f25b1abb3a322a844 size: 1903
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-build-post-build[0m
+no CVE provider running in the current ** namespace so skip adding image to be analysed
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-changelog[0m
+Converted /workspace/source/charts/standardbounties-relayer to an unshallow repository
+Generating change log from git ref 47782257d085bbe2954533eaf6d70e233c55fb98 => c90f93b4356667bd643979e888ef56dff32fdf7f
+WARNING: Failed to enrich commit cd53d767228448e8079c67576d7cc21ef9ac6d45 with issues: selected more than one user from users.jenkins.io: [****** x-0]
+WARNING: Failed to enrich commit cd53d767228448e8079c67576d7cc21ef9ac6d45 with issues: selected more than one user from users.jenkins.io: [****** x-0]
+Finding issues in commit messages using git format
+WARNING: No release found for Bounties-Network/standardbounties-relayer and tag v0.0.12 so creating a new release
+Updated the release information at https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.12
+generated: /workspace/source/charts/standardbounties-relayer/templates/release.yaml
+Created Release standardbounties-relayer-0-0-12 resource in namespace **
+Updating PipelineActivity bounties-network-standardbounties-relayer-master-5 with version 0.0.12
+Updated PipelineActivities bounties-network-standardbounties-relayer-master-5 with release notes URL: https://github.com/Bounties-Network/standardbounties-relayer/releases/tag/v0.0.12
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-helm-release[0m
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Adding missing Helm repo: storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io
+Successfully added Helm repository storage.googleapis.com.
+Adding missing Helm repo: jenkins-x-chartmuseum http://jenkins-x-chartmuseum:8080
+Successfully added Helm repository jenkins-x-chartmuseum.
+WARNING: No $CHART_REPOSITORY defined so using the default value of: http://jenkins-x-chartmuseum:8080
+Uploading chart file standardbounties-relayer-0.0.12.tgz to http://jenkins-x-chartmuseum:8080/api/charts
+Received 201 response: {"saved":true}
+
+Showing logs for build [32mbounties-network-standardbounti-vbdml-5[0m stage [32mfrom-build-pack[0m and container [32mstep-promote-jx-promote[0m
+WARNING: prow based install so skip waiting for the merge of Pull Requests to go green as currently there is an issue with gettingstatuses from the PR, see https://github.com/jenkins-x/**/issues/2410
+Promoting app standardbounties-relayer version 0.0.12 to namespace **-staging
+Created Pull Request: https://github.com/ConsenSys/environment-openfora-staging/pull/8
+Pull Request https://github.com/ConsenSys/environment-openfora-staging/pull/8 is merged at sha a1c7d69de10ca555fa1cbfe0679c00c986fda123
+Pull Request merged but we are not waiting for the update pipeline to complete!
