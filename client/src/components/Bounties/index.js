@@ -119,12 +119,16 @@ export default class Bounties extends Component {
       const fulfillers = [sender];
       const data = "QmSeaHjNf6MnQ94GnnkKY5qZYFEDGTqWhvG5NgZdNom1Sa";
       params = [
-        { t: "address", v: relayerContract.options.address },
-        { t: "string", v: method },
-        { t: "uint", v: bountyId },
-        { t: "address", v: fulfillers },
-        { t: "string", v: data },
-        { t: "uint256", v: nonce }
+        ["address", "string", "uint", "address[]", "string", "uint256"],
+        [relayerContract.options.address, method, bountyId, fulfillers, data, nonce]
+      ];
+    } else if (method === "metaUpdateFulfillment") {
+      const fulfillmentId = 1; //Meh just use first, all the same fulfillment address whilst testing anyways
+      const fulfillers = [sender];
+      const data = "QmSTHVi3USdTriNR5gPfFyhQwVqCoD4H33UyHJGqN3vQVv";
+      params = [
+        ["address", "string", "uint", "uint", "address[]", "string", "uint256"],
+        [relayerContract.options.address, method, bountyId, fulfillmentId, fulfillers, data, nonce]
       ];
     }
     console.log("Params", params);
@@ -165,7 +169,8 @@ export default class Bounties extends Component {
           });
           alert("Method not currently supported by this Demo...");
         } else {
-          const paramsHash = web3.utils.soliditySha3(...paramsObj.params);
+          console.log("paramsObj.params: ", paramsObj.params);
+          const paramsHash = web3.eth.abi.encodeParameters(...paramsObj.params);
           console.log("Params hash", paramsHash);
           // const params = web3.utils._.map(paramsObj.params, o => o.v);
           // console.log('Params list', params)

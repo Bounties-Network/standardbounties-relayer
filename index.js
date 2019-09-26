@@ -340,17 +340,14 @@ app.post("/relaydemo", async (req, res, next) => {
       const fulfillers = JSON.parse(req.body.fulfillers);
       const data = req.body.data;
 
+      // Metafulfill
       const params = [
-        { t: "address", v: BountiesMetaTxRelayer.options.address },
-        { t: "string", v: req.body.method },
-        { t: "uint", v: bountyId },
-        { t: "address", v: fulfillers },
-        { t: "string", v: data },
-        { t: "uint256", v: nonce }
+        ["address", "string", "uint", "address[]", "string", "uint256"],
+        [BountiesMetaTxRelayer.options.address, req.body.method, bountyId, fulfillers, data, nonce]
       ];
 
       console.log("Params", params);
-      const paramsHash = web3.utils.soliditySha3(...params);
+      const paramsHash = web3.eth.abi.encodeParameters(...params);
       console.log("Params hash", paramsHash);
 
       let signed = web3.eth.accounts.sign(paramsHash, accountPK);
@@ -449,18 +446,9 @@ app.post("/relay", async (req, res, next) => {
     const cache = await queryCache(relayedTxKey);
 
     if (!cache) {
-      // const params = [
-      //   {t: 'address', v: BountiesMetaTxRelayer.options.address},
-      //   {t: 'string', v: req.body.method},
-      //   {t: 'uint', v: bountyId},
-      //   {t: 'address', v: fulfillers},
-      //   {t: 'string', v: data},
-      //   {t: 'uint256', v: nonce}
-      // ];
-
       console.log("Params", params);
 
-      const paramsHash = web3.utils.soliditySha3(...params);
+      const paramsHash = web3.eth.abi.encodeParameters(...params);
       console.log("Params hash", paramsHash);
 
       console.log("Signed msg", signature);
@@ -488,6 +476,10 @@ app.post("/relay", async (req, res, next) => {
               gasPrice: 200000000
             })
             .on("error", (error, receipt) => {
+              if (typeof error.message === "string" && error.message.includes("nonce too low")) {
+                console.info("*** KILLING PROCESS because nonce is to low; web3 instance most likely out of sync ***");
+                process.exit(1);
+              }
               console.log(`ERROR while executing method ${method}`, error, receipt);
               res.end(
                 JSON.stringify({
