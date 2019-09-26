@@ -65,10 +65,7 @@ export default class Bounties extends Component {
         console.log("Bounty data", bountyId, bountyData);
       }
     } catch (e) {
-      console.error(
-        "Error while fetching data from the StandardBounties contract",
-        e
-      );
+      console.error("Error while fetching data from the StandardBounties contract", e);
     }
     this.setState({
       totalBounties,
@@ -112,15 +109,15 @@ export default class Bounties extends Component {
     const { web3 } = this.props;
 
     const sender = web3.utils.toChecksumAddress(account);
-    const latestNonce = await relayerContract.methods
-      .replayNonce(sender)
-      .call();
+    const latestNonce = await relayerContract.methods.replayNonce(sender).call();
+    console.log("latestNonce from meta tx contract: ", latestNonce);
     const nonce = web3.utils.hexToNumber(latestNonce);
+    console.log("nonce from metatx contract: ", nonce);
     let params = [];
 
     if (method === "metaFulfillBounty") {
       const fulfillers = [sender];
-      const data = "QmTUXNiVKDRNCkVWaaJfcPhYapvWNM6HoUeit4HucCGqMU";
+      const data = "QmSeaHjNf6MnQ94GnnkKY5qZYFEDGTqWhvG5NgZdNom1Sa";
       params = [
         { t: "address", v: relayerContract.options.address },
         { t: "string", v: method },
@@ -154,9 +151,8 @@ export default class Bounties extends Component {
           processing: false
         });
         alert(
-          `You have already used the relayer for method "${
-            data.method
-          }" ${(Date.now() - parseInt(data.timestamp)) / 1000} seconds ago`
+          `You have already used the relayer for method "${data.method}" ${(Date.now() - parseInt(data.timestamp)) /
+            1000} seconds ago`
         );
       } else {
         // getting dummy params for the specified method
@@ -181,11 +177,7 @@ export default class Bounties extends Component {
               relayStateMsg: "Sign your transaction...",
               processing: true
             });
-            let signature = await web3.eth.personal.sign(
-              paramsHash,
-              sender,
-              ""
-            );
+            let signature = await web3.eth.personal.sign(paramsHash, sender, "");
             this.setState({ relayStateMsg: "Processing..." });
             console.log("Signed msg", signature);
 
@@ -227,13 +219,7 @@ export default class Bounties extends Component {
   };
 
   render() {
-    const {
-      contract,
-      totalBounties,
-      bountyId,
-      bountyData,
-      txHash
-    } = this.state;
+    const { contract, totalBounties, bountyId, bountyData, txHash } = this.state;
     const { networkId } = this.props;
     return (
       <div>
@@ -256,34 +242,18 @@ export default class Bounties extends Component {
               <div className={styles.value}>{contract._address}</div>
             </Box>
             <Field label="BountyId">
-              <Input
-                type="text"
-                value={this.state.bountyId}
-                onChange={this.updateBountyId}
-              />
+              <Input type="text" value={this.state.bountyId} onChange={this.updateBountyId} />
             </Field>
-            <Button
-              onClick={() =>
-                this.props.createDummyBounty(this.getBountyData.bind(this))
-              }
-              size="small"
-            >
+            <Button onClick={() => this.props.createDummyBounty(this.getBountyData.bind(this))} size="small">
               Create Dummy Bounty
             </Button>
-            <Button
-              ml={1}
-              onClick={() => this.getBounty()}
-              size="small"
-              disabled={!this.state.bountyId}
-            >
+            <Button ml={1} onClick={() => this.getBounty()} size="small" disabled={!this.state.bountyId}>
               Get Bounty by Id
             </Button>
             {bountyData && (
               <div>
                 <Box fontSize={1} style={{ textAlign: "center" }}>
-                  <div className={styles.value}>
-                    Current BountyId: {bountyId}
-                  </div>
+                  <div className={styles.value}>Current BountyId: {bountyId}</div>
                 </Box>
                 <Field label="Method to relay">
                   <Select
@@ -297,20 +267,13 @@ export default class Bounties extends Component {
                 <Button
                   onClick={() => this.relay()}
                   size="small"
-                  disabled={
-                    this.state.selectedMethod.length == 0 ||
-                    this.state.processing
-                  }
+                  disabled={this.state.selectedMethod.length == 0 || this.state.processing}
                 >
                   {this.state.relayStateMsg}
                 </Button>
                 {txHash && (
                   <Box style={{ textAlign: "center" }}>
-                    <Link
-                      href={web3Networks[networkId].explorerTx + txHash}
-                      target="_blank"
-                      title="Etherscan"
-                    >
+                    <Link href={web3Networks[networkId].explorerTx + txHash} target="_blank" title="Etherscan">
                       Open Transaction on Etherscan
                     </Link>
                   </Box>
