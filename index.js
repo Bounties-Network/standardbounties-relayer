@@ -459,7 +459,7 @@ app.post("/relay", async (req, res, next) => {
 
       if (signer == sender) {
         // Omit the firt two parameters (BountiesMetaTxRelayer address, method) for some weird reason <<<< y u do dis
-        const methodParams = paramsHash[1].slice(2, paramsHash.length);
+        const methodParams = params[1].slice(2, params.length);
         console.log("MetaTX contract method Params list", methodParams);
 
         try {
