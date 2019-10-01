@@ -448,7 +448,8 @@ app.post("/relay", async (req, res, next) => {
     if (!cache) {
       console.log("Params", params);
 
-      const paramsHash = web3.eth.abi.encodeParameters(...params);
+      let paramsHash = web3.utils.keccak256(web3.eth.abi.encodeParameters(...params));
+      // paramsHash = web3.utils.soliditySha3("\x19Ethereum Signed Message:\n32", paramsHash);
       console.log("Params hash", paramsHash);
 
       console.log("Signed msg", signature);

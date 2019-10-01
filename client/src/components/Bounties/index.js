@@ -180,7 +180,8 @@ export default class Bounties extends Component {
           alert("Method not currently supported by this Demo...");
         } else {
           console.log("paramsObj.params: ", paramsObj.params);
-          const paramsHash = web3.eth.abi.encodeParameters(...paramsObj.params);
+          let paramsHash = web3.utils.keccak256(web3.eth.abi.encodeParameters(...paramsObj.params));
+          // paramsHash = web3.utils.soliditySha3("\x19Ethereum Signed Message:\n32", paramsHash);
           console.log("Params hash", paramsHash);
           // const params = web3.utils._.map(paramsObj.params, o => o.v);
           // console.log('Params list', params)
