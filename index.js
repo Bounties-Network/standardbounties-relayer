@@ -11,6 +11,8 @@ const JSONCache = require("redis-json");
 const Web3 = require("web3");
 const _ = Web3.utils._;
 const HDWalletProvider = require("truffle-hdwallet-provider");
+const Rollbar = require("rollbar");
+
 require("dotenv").config();
 
 app.use(bodyParser.json());
@@ -18,10 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 
-/**
- * Redis configuration
- *
- */
+let rollbar;
 let networkId;
 let accounts;
 let redis;
@@ -191,47 +190,47 @@ app.get("/bounties", async (req, res) => {
  * Just for testing purposes. It creates a new dummy bounty
  *
  */
-app.post("/bounty", async (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.set("Content-Type", "application/json");
+// app.post("/bounty", async (req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.set("Content-Type", "application/json");
 
-  // const sender = web3.utils.toChecksumAddress("0x6c72959f2b9523e9e9b8f99549fe65e7080f18aa", networkId);
-  let sender = accounts[process.env.RELAYER_ACC_INDEX || 0];
-  const issuers = [sender];
-  const approvers = [sender];
-  const data = "QmQJiZBaiHybUBRuEngcZGY9PzUEtyNDYt8RaCWPNzanrV";
-  const deadline = "1569760282";
-  const token = "0x0000000000000000000000000000000000000000";
-  const tokenVersion = 0;
-  const depositAmount = web3.utils.toWei("0.001", "ether");
+//   // const sender = web3.utils.toChecksumAddress("0x6c72959f2b9523e9e9b8f99549fe65e7080f18aa", networkId);
+//   let sender = accounts[process.env.RELAYER_ACC_INDEX || 0];
+//   const issuers = [sender];
+//   const approvers = [sender];
+//   const data = "QmQJiZBaiHybUBRuEngcZGY9PzUEtyNDYt8RaCWPNzanrV";
+//   const deadline = "1569760282";
+//   const token = "0x0000000000000000000000000000000000000000";
+//   const tokenVersion = 0;
+//   const depositAmount = web3.utils.toWei("0.001", "ether");
 
-  // const owner = await StandardBounties.methods.owner.call();
-  // res.end(JSON.stringify( owner ));
-  console.log("estimating gas...");
-  const estimateGas = await StandardBounties.methods
-    .issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount)
-    .estimateGas({ from: sender, value: depositAmount });
-  console.log("/bounty - estimateGas", estimateGas);
-  StandardBounties.methods
-    .issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount)
-    .send({
-      from: sender,
-      gas: estimateGas + 21000,
-      gasPrice: 20000000000,
-      value: depositAmount
-    })
-    .on("error", (error, receipt) => {
-      console.log("IssueBounty ERROR", error, receipt);
-      next(error);
-    })
-    .on("transactionHash", txHash => {
-      console.log("IssueBounty TxHash", txHash);
-      res.end(JSON.stringify(txHash));
-    })
-    .on("receipt", receipt => console.log("IssueBounty Receipt", receipt));
+//   // const owner = await StandardBounties.methods.owner.call();
+//   // res.end(JSON.stringify( owner ));
+//   console.log("estimating gas...");
+//   const estimateGas = await StandardBounties.methods
+//     .issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount)
+//     .estimateGas({ from: sender, value: depositAmount });
+//   console.log("/bounty - estimateGas", estimateGas);
+//   StandardBounties.methods
+//     .issueAndContribute(sender, issuers, approvers, data, deadline, token, tokenVersion, depositAmount)
+//     .send({
+//       from: sender,
+//       gas: estimateGas + 21000,
+//       gasPrice: 20000000000,
+//       value: depositAmount
+//     })
+//     .on("error", (error, receipt) => {
+//       console.log("IssueBounty ERROR", error, receipt);
+//       next(error);
+//     })
+//     .on("transactionHash", txHash => {
+//       console.log("IssueBounty TxHash", txHash);
+//       res.end(JSON.stringify(txHash));
+//     })
+//     .on("receipt", receipt => console.log("IssueBounty Receipt", receipt));
 
-  // res.end(JSON.stringify( estimateGas ));
-});
+//   // res.end(JSON.stringify( estimateGas ));
+// });
 
 /**
  * Just for testing purposes. Get bounty data by its id
@@ -317,98 +316,98 @@ app.get("/relay/nonce/:account", async (req, res) => {
  * with NO_ETH_USER_PK as private key.
  *
  */
-app.post("/relaydemo", async (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.set("Content-Type", "application/json");
-  console.log("/relaydemo", req.body);
+// app.post("/relaydemo", async (req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.set("Content-Type", "application/json");
+//   console.log("/relaydemo", req.body);
 
-  const RELAYER_ADDRESS = accounts[process.env.RELAYER_ACC_INDEX || 0];
+//   const RELAYER_ADDRESS = accounts[process.env.RELAYER_ACC_INDEX || 0];
 
-  // Just for testing purposes
-  const accountPK = process.env.NO_ETH_USER_PK;
+//   // Just for testing purposes
+//   const accountPK = process.env.NO_ETH_USER_PK;
 
-  const relayedTxKey = `${req.body.sender}-${req.body.method}`;
-  try {
-    const cache = await queryCache(relayedTxKey);
+//   const relayedTxKey = `${req.body.sender}-${req.body.method}`;
+//   try {
+//     const cache = await queryCache(relayedTxKey);
 
-    if (!cache) {
-      // const nonce = parseInt(await getNonce(req.body.sender)) || 0;
-      const latestNonce = await BountiesMetaTxRelayer.methods.replayNonce(req.body.sender).call();
-      const nonce = await web3.utils.hexToNumber(latestNonce);
-      const sender = web3.utils.toChecksumAddress(req.body.sender);
-      const bountyId = req.body.bountyId;
-      const fulfillers = JSON.parse(req.body.fulfillers);
-      const data = req.body.data;
+//     if (!cache) {
+//       // const nonce = parseInt(await getNonce(req.body.sender)) || 0;
+//       const latestNonce = await BountiesMetaTxRelayer.methods.replayNonce(req.body.sender).call();
+//       const nonce = await web3.utils.hexToNumber(latestNonce);
+//       const sender = web3.utils.toChecksumAddress(req.body.sender);
+//       const bountyId = req.body.bountyId;
+//       const fulfillers = JSON.parse(req.body.fulfillers);
+//       const data = req.body.data;
 
-      // Metafulfill
-      const params = [
-        ["address", "string", "uint", "address[]", "string", "uint256"],
-        [BountiesMetaTxRelayer.options.address, req.body.method, bountyId, fulfillers, data, nonce]
-      ];
+//       // Metafulfill
+//       const params = [
+//         ["address", "string", "uint", "address[]", "string", "uint256"],
+//         [BountiesMetaTxRelayer.options.address, req.body.method, bountyId, fulfillers, data, nonce]
+//       ];
 
-      console.log("Params", params);
-      const paramsHash = web3.eth.abi.encodeParameters(...params);
-      console.log("Params hash", paramsHash);
+//       console.log("Params", params);
+//       const paramsHash = web3.eth.abi.encodeParameters(...params);
+//       console.log("Params hash", paramsHash);
 
-      let signed = web3.eth.accounts.sign(paramsHash, accountPK);
-      const signature = signed.signature;
-      console.log("Signed msg", signature);
-      // // "0x9550c53e9ea599bb8a71e2064a8d0f7a749874eb7a50179500fa538aed5ec99b351e5f459abb9a738bd4f345bcad4cb550f6743437a3d24c2611d2968839f2351c", "0x19408022fEF63aCc8A69CdCDc66822688A8F25cc", 0, ["0x0aD7dc90A03BAc20284Df4b70Dc4CAF3c74Cc3fA"], "Qmd5u7XVJuN3WiZ1o1R7GphVCcp6Njefx7veDTmW5C9vsp", 0
+//       let signed = web3.eth.accounts.sign(paramsHash, accountPK);
+//       const signature = signed.signature;
+//       console.log("Signed msg", signature);
+//       // // "0x9550c53e9ea599bb8a71e2064a8d0f7a749874eb7a50179500fa538aed5ec99b351e5f459abb9a738bd4f345bcad4cb550f6743437a3d24c2611d2968839f2351c", "0x19408022fEF63aCc8A69CdCDc66822688A8F25cc", 0, ["0x0aD7dc90A03BAc20284Df4b70Dc4CAF3c74Cc3fA"], "Qmd5u7XVJuN3WiZ1o1R7GphVCcp6Njefx7veDTmW5C9vsp", 0
 
-      let signer = web3.eth.accounts.recover(paramsHash, signature);
-      console.log("Is that equal?", sender, signer);
+//       let signer = web3.eth.accounts.recover(paramsHash, signature);
+//       console.log("Is that equal?", sender, signer);
 
-      if (signer == sender) {
-        // // Actual relayed TX
-        const estimateGas = await BountiesMetaTxRelayer.methods
-          .metaFulfillBounty(signature, bountyId, fulfillers, data, nonce)
-          .estimateGas({ from: RELAYER_ADDRESS });
-        console.log("ESTIMATED GAS", estimateGas);
-        BountiesMetaTxRelayer.methods
-          .metaFulfillBounty(signature, bountyId, fulfillers, data, nonce)
-          .send({
-            from: RELAYER_ADDRESS,
-            gas: estimateGas,
-            gasPrice: 20000000000
-          })
-          .on("error", (error, receipt) => {
-            console.log("metaFulfillBounty ERROR", error, receipt);
-            res.end(JSON.stringify({ status: 500, message: error }));
-          })
-          .on("transactionHash", async txHash => {
-            console.log("metaFulfillBounty TxHash", txHash);
-            // UPDATE CACHE TO CONTROL RELAYED META TX QUOTA PER USER
-            await cacheRelayedTx(relayedTxKey, req.body.method, sender, {
-              signature,
-              bountyId,
-              fulfillers,
-              data,
-              nonce
-            });
-            res.end(JSON.stringify({ status: 200, next_nonce: nonce + 1 }));
-          })
-          .on("receipt", receipt => console.log("metaFulfillBounty Receipt", receipt));
-      } else {
-        res.end(
-          JSON.stringify({
-            status: 400,
-            message: "Sender didn't signed this transaction"
-          })
-        );
-      }
-    } else {
-      res.end(
-        JSON.stringify({
-          status: 400,
-          message: "You have reached the limited quota for RelayedTx. Try again later."
-        })
-      );
-    }
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
-});
+//       if (signer == sender) {
+//         // // Actual relayed TX
+//         const estimateGas = await BountiesMetaTxRelayer.methods
+//           .metaFulfillBounty(signature, bountyId, fulfillers, data, nonce)
+//           .estimateGas({ from: RELAYER_ADDRESS });
+//         console.log("ESTIMATED GAS", estimateGas);
+//         BountiesMetaTxRelayer.methods
+//           .metaFulfillBounty(signature, bountyId, fulfillers, data, nonce)
+//           .send({
+//             from: RELAYER_ADDRESS,
+//             gas: estimateGas,
+//             gasPrice: 20000000000
+//           })
+//           .on("error", (error, receipt) => {
+//             console.log("metaFulfillBounty ERROR", error, receipt);
+//             res.end(JSON.stringify({ status: 500, message: error }));
+//           })
+//           .on("transactionHash", async txHash => {
+//             console.log("metaFulfillBounty TxHash", txHash);
+//             // UPDATE CACHE TO CONTROL RELAYED META TX QUOTA PER USER
+//             await cacheRelayedTx(relayedTxKey, req.body.method, sender, {
+//               signature,
+//               bountyId,
+//               fulfillers,
+//               data,
+//               nonce
+//             });
+//             res.end(JSON.stringify({ status: 200, next_nonce: nonce + 1 }));
+//           })
+//           .on("receipt", receipt => console.log("metaFulfillBounty Receipt", receipt));
+//       } else {
+//         res.end(
+//           JSON.stringify({
+//             status: 400,
+//             message: "Sender didn't signed this transaction"
+//           })
+//         );
+//       }
+//     } else {
+//       res.end(
+//         JSON.stringify({
+//           status: 400,
+//           message: "You have reached the limited quota for RelayedTx. Try again later."
+//         })
+//       );
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     next(err);
+//   }
+// });
 
 /**
  * Main method to relay a transaction. The parameters needed to be sent in the request body are:
@@ -440,6 +439,7 @@ app.post("/relay", async (req, res, next) => {
   const method = req.body.method;
   const params = req.body.params;
   const signature = req.body.signature;
+  console.log("Sender", sender);
 
   const relayedTxKey = `${sender}-${method}`;
   try {
@@ -480,10 +480,17 @@ app.post("/relay", async (req, res, next) => {
             })
             .on("error", (error, receipt) => {
               if (typeof error.message === "string" && error.message.includes("nonce too low")) {
+                rollbar.critical(
+                  "*** KILLING PROCESS because nonce is to low; web3 instance most likely out of sync ***",
+                  req
+                );
                 console.info("*** KILLING PROCESS because nonce is to low; web3 instance most likely out of sync ***");
                 process.exit(1);
               }
-              console.log(`ERROR while executing method ${method}`, error, receipt);
+
+              console.error(`ERROR while executing method ${method}`, error, receipt);
+              rollbar.error(error, req);
+
               res.end(
                 JSON.stringify({
                   status: 500,
@@ -497,9 +504,11 @@ app.post("/relay", async (req, res, next) => {
               await cacheRelayedTx(relayedTxKey, method, sender, methodParams, txHash);
               res.end(JSON.stringify({ status: 200, txHash }));
             })
-            .on("receipt", receipt => console.log(`${method} Receipt`, receipt));
+            .on("receipt", receipt => console.log(`${method} Receipt`, receipt, " for sender ", sender));
         } catch (error) {
           console.error(`ERROR while relaying method "${method}"`, error);
+          rollbar.error(error, req);
+
           res.end(
             JSON.stringify({
               status: 500,
@@ -508,14 +517,20 @@ app.post("/relay", async (req, res, next) => {
           );
         }
       } else {
+        console.error(`Sender ${sender} did not sign this transaction`);
+        rollbar.error(`Sender ${sender} did not sign this transaction`, req);
+
         res.end(
           JSON.stringify({
             status: 400,
-            message: "Sender didn't signed this transaction"
+            message: "Sender did not sign this transaction"
           })
         );
       }
     } else {
+      console.error(`${sender} has reached the limited quota for meta transactions.`);
+      rollbar.error(`${sender} has reached the limited quota for meta transactions.`, req);
+
       res.end(
         JSON.stringify({
           status: 400,
@@ -525,6 +540,7 @@ app.post("/relay", async (req, res, next) => {
     }
   } catch (err) {
     console.error(err);
+    rollbar.error(error, req);
     next(err);
   }
 });
@@ -602,6 +618,24 @@ app.post("/relay", async (req, res, next) => {
   async function hasEnoughBalance(account, minBalance) {
     const balance = await getAccountBalance(account);
     return new BN(balance).gt(new BN(minBalance));
+  }
+
+  // Add Rollbar if access token is available
+  if (process.env.ROLLBAR_ACCESS_TOKEN) {
+    rollbar = new Rollbar({
+      enabled: process.env.ROLLBAR_ACCESS_TOKEN ? true : false,
+      payload: {
+        environment:
+          typeof process.env.REDIS_HOST === "string" && process.env.REDIS_HOST.includes("production")
+            ? "production"
+            : "staging" || "local"
+      },
+      accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
+      captureUncaught: true,
+      captureUnhandledRejections: true
+    });
+    app.use(rollbar.errorHandler());
+    console.info("Rollbar enabled");
   }
 
   web3.eth
