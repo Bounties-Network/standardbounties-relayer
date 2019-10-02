@@ -126,7 +126,7 @@ app.get("/", (req, res) => {
     bounties_contract: process.env.STANDARD_BOUNTIES_ADDRESS,
     status: "live"
   };
-  console.log("/", config);
+  console.log("/", " PING");
   res.end(JSON.stringify(config));
 });
 
@@ -628,7 +628,7 @@ app.post("/relay", async (req, res, next) => {
         environment:
           typeof process.env.REDIS_HOST === "string" && process.env.REDIS_HOST.includes("production")
             ? "production"
-            : "staging" || "local"
+            : "rinkstaging" || "local"
       },
       accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
       captureUncaught: true,
