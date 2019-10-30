@@ -1,4 +1,13 @@
 buildPack: javascript
-agent:
-  label: jenkins-nodejs10x
-  container: nodejs10x
+pipelineConfig:
+  pipelines:
+    overrides:
+      - name: npm-install
+        pipeline: release
+        stage: build
+        agent:
+          image: gcr.io/jenkinsxio/builder-nodejs10x
+        steps:
+          - name: yarn-install
+            sh: "yarn install"
+        type: replace
