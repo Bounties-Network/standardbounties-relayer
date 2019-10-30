@@ -433,7 +433,8 @@ app.post("/relay", async (req, res, next) => {
   res.set("Content-Type", "application/json");
   console.log("/relay", req.body);
 
-  const RELAYER_ADDRESS = accounts[process.env.RELAYER_ACC_INDEX || 0];
+  let RELAYER_ADDRESS = accounts[process.env.RELAYER_ACC_INDEX || 0];
+  RELAYER_ADDRESS = web3.utils.toChecksumAddress(RELAYER_ADDRESS)
 
   const sender = req.body.sender;
   const method = req.body.method;
