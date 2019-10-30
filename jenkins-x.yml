@@ -1,1 +1,4 @@
 buildPack: javascript
+agent:
+  label: jenkins-nodejs10x
+  container: nodejs10x
