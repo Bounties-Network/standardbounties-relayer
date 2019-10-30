@@ -10,7 +10,7 @@ const Redis = require("ioredis");
 const JSONCache = require("redis-json");
 const Web3 = require("web3");
 const _ = Web3.utils._;
-const HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Rollbar = require("rollbar");
 
 require("dotenv").config();
