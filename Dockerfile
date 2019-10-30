@@ -1,4 +1,4 @@
-FROM node:10.16.3
+FROM node:9-slim
 ENV PORT 3001
 EXPOSE 3001
 WORKDIR /usr/src/app
