@@ -5,7 +5,9 @@ pipelineConfig:
       - name: npm-install
         pipeline: release
         stage: build
+        agent:
+          image: "node:10.16.3"
         steps:
-          - name: npm-install
+          - name: yarn-install
             sh: "yarn install"
         type: replace
