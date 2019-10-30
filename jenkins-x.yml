@@ -6,7 +6,7 @@ pipelineConfig:
         pipeline: release
         stage: build
         agent:
-          image: gcr.io/jenkinsxio/builder-nodejs10x
+          image: gcr.io/jenkinsxio/builder-nodejs12x
         steps:
           - name: yarn-install
             sh: "yarn install"
