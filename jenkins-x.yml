@@ -1,1 +1,8 @@
 buildPack: javascript
+pipelineConfig:
+  pipelines:
+    release:
+      build:
+        replace: true
+        steps:
+          - command: ["yarn install"]
