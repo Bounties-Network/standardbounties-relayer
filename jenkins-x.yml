@@ -5,4 +5,4 @@ pipelineConfig:
       build:
         replace: true
         steps:
-          - command: ["yarn install"]
+          - command: "yarn install"
