@@ -27,6 +27,11 @@ spec:
 {{- range $pkey, $pval := .Values.env }}
         - name: {{ $pkey }}
           value: {{ quote $pval }}
+        - name: SPECIAL_LEVEL_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: relayer-mnemonic
+              key: MNEMONIC
 {{- end }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
