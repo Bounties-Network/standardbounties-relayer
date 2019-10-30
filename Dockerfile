@@ -6,4 +6,5 @@ COPY . .
 RUN yarn
 RUN npm rebuild
 
+
 CMD ["npm", "start"]
