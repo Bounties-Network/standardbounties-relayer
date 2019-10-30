@@ -10,4 +10,6 @@ pipelineConfig:
         steps:
           - name: yarn-install
             sh: "yarn install"
+          - name: npm rebuild
+            sh: "npm rebuild"
         type: replace
