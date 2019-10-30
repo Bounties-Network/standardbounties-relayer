@@ -1,1 +1,11 @@
 buildPack: javascript
+pipelineConfig:
+  pipelines:
+    overrides:
+      - name: npm-install
+        pipeline: release
+        stage: build
+        steps:
+          - name: npm-install
+            sh: "yarn install"
+        type: replace
