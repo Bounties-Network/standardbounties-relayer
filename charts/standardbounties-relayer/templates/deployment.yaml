@@ -23,15 +23,13 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        envFrom:
+          - configMapRef:
+              name: relayer-mnemonic
         env:
 {{- range $pkey, $pval := .Values.env }}
         - name: {{ $pkey }}
           value: {{ quote $pval }}
-        - name: SPECIAL_LEVEL_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: relayer-mnemonic
-              key: MNEMONIC
 {{- end }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
