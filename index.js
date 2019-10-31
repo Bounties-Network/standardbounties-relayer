@@ -500,7 +500,7 @@ app.post("/relay", async (req, res, next) => {
               );
             })
             .on("transactionHash", async txHash => {
-              console.log(`${req.body.method} TxHash`, txHash);
+              console.log(`${req.body.method} TxHash broadcasted`, txHash);
               // UPDATE CACHE TO CONTROL RELAYED META TX QUOTA PER USER
               await cacheRelayedTx(relayedTxKey, method, sender, methodParams, txHash);
               res.end(JSON.stringify({ status: 200, txHash }));
