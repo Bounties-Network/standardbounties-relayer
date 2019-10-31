@@ -535,7 +535,7 @@ app.post("/relay", async (req, res, next) => {
       res.end(
         JSON.stringify({
           status: 400,
-          message: "You have reached the limited quota for RelayedTx. Try again later."
+          message: "You have reached the limited quota for relayed transactions. Try again later."
         })
       );
     }
